@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 import hashlib
 import uuid
+from database.kv_store import JSONStore
  
  
 class User:
@@ -61,30 +62,20 @@ class User:
  
  
 class UserRepository:
-    """User data repository handling all user data operations"""
+    """User data repository handling all user data operations using KV storage"""
     
-    def __init__(self, db_path):
-        self.db_path = Path(db_path)
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, db_path=None):
+        # db_path is kept for backward compatibility but not used with KV
+        self.kv_key = 'users'
         self._load_data()
     
     def _load_data(self):
-        """Load users from database file, tolerating empty/invalid JSON"""
-        if self.db_path.exists():
-            try:
-                with open(self.db_path, 'r') as f:
-                    content = f.read().strip()
-                    self.users = json.loads(content) if content else {}
-            except (json.JSONDecodeError, OSError):
-                self.users = {}
-        else:
-            self.users = {}
+        """Load users from Vercel KV storage"""
+        self.users = JSONStore.read(self.kv_key)
     
     def _save_data(self):
-        """Save users to database file"""
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.db_path, 'w') as f:
-            json.dump(self.users, f, indent=2)
+        """Save users to Vercel KV storage"""
+        JSONStore.write(self.kv_key, self.users)
     
     def create_user(self, username, email, password, role, created_by):
         """
