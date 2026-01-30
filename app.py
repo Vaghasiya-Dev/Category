@@ -23,29 +23,68 @@ CORS(app)
 
 # Initialize default data in KV if empty
 def initialize_kv_data():
-    """Initialize default data in KV storage"""
+    """Initialize default data in KV storage (only for Vercel KV, not local files)"""
+    import os
     import json
     from pathlib import Path
+    
+    # Only initialize if using Vercel KV (not local files)
+    if not os.environ.get('KV_URL'):
+        print("Using local JSON files for storage")
+        return
+    
+    print("Initializing Vercel KV storage...")
     
     # Load categories from local file if KV is empty
     if not JSONStore.read('categories'):
         categories_path = Path(__file__).parent / 'categories.json'
         if categories_path.exists():
-            with open(categories_path, 'r') as f:
+            with open(categories_path, 'r', encoding='utf-8') as f:
                 categories = json.load(f)
                 JSONStore.write('categories', categories)
+                print("✓ Categories loaded to KV")
     
-    # Initialize blog if empty
+    # Load users from local file if KV is empty
+    if not JSONStore.read('users'):
+        users_path = Path(__file__).parent / 'database' / 'users.json'
+        if users_path.exists():
+            with open(users_path, 'r', encoding='utf-8') as f:
+                users = json.load(f)
+                JSONStore.write('users', users)
+                print("✓ Users loaded to KV")
+    
+    # Load blog from local file if KV is empty
     if not JSONStore.read('blog'):
-        JSONStore.write('blog', {"title": "Welcome, to Catagory Contant", "content": "Admin can Access all Emp. SuperAdmin can CRUD in audience, etc. hello"})
+        blog_path = Path(__file__).parent / 'database' / 'blog.json'
+        if blog_path.exists():
+            with open(blog_path, 'r', encoding='utf-8') as f:
+                blog = json.load(f)
+                JSONStore.write('blog', blog)
+        else:
+            JSONStore.write('blog', {"title": "Welcome, to Category Content", "content": "Admin can Access all Emp. SuperAdmin can CRUD in audience, etc."})
+        print("✓ Blog loaded to KV")
     
-    # Initialize settings if empty
+    # Load settings from local file if KV is empty
     if not JSONStore.read('settings'):
-        JSONStore.write('settings', {"theme": "minimal", "allow_signups": False})
+        settings_path = Path(__file__).parent / 'database' / 'settings.json'
+        if settings_path.exists():
+            with open(settings_path, 'r', encoding='utf-8') as f:
+                settings = json.load(f)
+                JSONStore.write('settings', settings)
+        else:
+            JSONStore.write('settings', {"theme": "minimal", "allow_signups": False})
+        print("✓ Settings loaded to KV")
     
-    # Initialize audiences if empty
+    # Load audiences from local file if KV is empty
     if not JSONStore.read('audiences'):
-        JSONStore.write('audiences', {})
+        audiences_path = Path(__file__).parent / 'database' / 'audiences.json'
+        if audiences_path.exists():
+            with open(audiences_path, 'r', encoding='utf-8') as f:
+                audiences = json.load(f)
+                JSONStore.write('audiences', audiences)
+        else:
+            JSONStore.write('audiences', {})
+        print("✓ Audiences loaded to KV")
 
 initialize_kv_data()
  
