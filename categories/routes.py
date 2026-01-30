@@ -32,11 +32,11 @@ def get_category_tree(**kwargs):
     """Get category tree with metadata"""
     current_user = kwargs.get('current_user')
     service = get_service()
-    tree = service.get_category_tree()
+    categories = service.get_all_categories()
     
     return jsonify({
         'success': True,
-        'tree': tree
+        'tree': categories
     })
  
  
