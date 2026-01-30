@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 28px;
+            color: var(--text);
+        }
+        .shell {
+            max-width: 1150px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+        }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+        header h1 { font-size: 1.8rem; }
+        .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+        a.btn {
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            box-shadow: 0 10px 30px rgba(91,123,255,0.25);
+            transition: transform 0.15s ease;
+        }
+        a.btn:hover { transform: translateY(-1px); }
+        a.btn.logout { background: #f93e3e; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; background: #f8fafc; }
+        .card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .card p { color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+        .card a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .card a:hover { text-decoration: underline; }
+        .user-info { background: #e8eef7; padding: 14px; border-radius: 8px; margin-top: 10px; }
+        .user-info p { margin: 4px 0; font-size: 0.9rem; }
+        .header-subtitle { color: var(--muted); margin-top: 4px; }
+        .modules-title { margin: 28px 0 14px; font-size: 1.3rem; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <div>
+                <h1>Dashboard</h1>
+                <p class="header-subtitle">Welcome back! Access all your modules</p>
+            </div>
+            <div class="nav">
+                <a class="btn" href="/settings-page">Settings</a>
+                <a class="btn" href="/blog-page">Blog</a>
+                <a class="btn" href="/category-page">Category</a>
+                <a class="btn" href="/audiences-page">Audiences</a>
+                <a class="btn" href="/admin">Admin</a>
+                <a class="btn logout" href="#" id="logoutBtn">Logout</a>
+            </div>
+        </header>
+
+        <div class="user-info">
+            <p><strong>User:</strong> <span id="username"></span></p>
+            <p><strong>Role:</strong> <span id="userRole"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        </div>
+
+        <h2 class="modules-title">Modules</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📊 Blog</h3>
+                <p>Manage blog content. Admins and Super Admins can create and edit posts.</p>
+                <a href="/blog-page">Go to Blog →</a>
+            </div>
+            <div class="card">
+                <h3>⚙️ Settings</h3>
+                <p>Manage application settings. Modify configuration and preferences.</p>
+                <a href="/settings-page">Go to Settings →</a>
+            </div>
+            <div class="card">
+                <h3>📂 Categories</h3>
+                <p>Browse and manage hierarchical categories. Super Admin has full CRUD.</p>
+                <a href="/category-page">Go to Categories →</a>
+            </div>
+            <div class="card">
+                <h3>👥 Audiences</h3>
+                <p>Manage audience data and categories. Admins can view and update audience information.</p>
+                <a href="/audiences-page">Go to Audiences →</a>
+            </div>
+            <div id="adminCard" class="card hidden">
+                <h3>👤 Admin Panel</h3>
+                <p>Manage users, audiences, and monitor system activity.</p>
+                <a href="/admin">Go to Admin →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadUser() {
+            const userStr = localStorage.getItem('user');
+            if (!userStr) {
+                window.location.href = '/login';
+                return;
+            }
+            
+            const user = JSON.parse(userStr);
+            document.getElementById('username').textContent = user.username;
+            document.getElementById('userRole').textContent = user.role;
+            document.getElementById('userEmail').textContent = user.email;
+            
+            // Show admin panel for admin and super_admin roles
+            if (user.role === 'admin' || user.role === 'super_admin') {
+                document.getElementById('adminCard').style.display = 'block';
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+        });
+
+        loadUser();
+    </script>
+</body>
+</html>

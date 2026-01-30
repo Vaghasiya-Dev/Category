@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 28px;
+        }
+        .shell {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            color: var(--text);
+        }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+        header h1 { font-size: 1.8rem; }
+        .btn-back {
+            text-decoration: none;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            color: var(--text);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .btn-back:hover { background: #e5e7eb; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-family: inherit; font-size: 1rem; }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(91,123,255,0.1); }
+        textarea { resize: vertical; min-height: 200px; }
+        .btn-save {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-save:hover { transform: translateY(-2px); }
+        .message { padding: 12px; border-radius: 8px; margin-bottom: 14px; display: none; }
+        .message.success { background: #d4edda; color: #155724; }
+        .message.error { background: #f8d7da; color: #721c24; }
+        .readonly { background: #f8fafc; }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>📝 Blog</h1>
+            <a href="/dashboard" class="btn-back">← Back to Dashboard</a>
+        </header>
+
+        <div class="message" id="message"></div>
+
+        <form id="blogForm">
+            <div class="form-group">
+                <label for="title">Blog Title</label>
+                <input type="text" id="title" placeholder="Enter blog title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Blog Content</label>
+                <textarea id="content" placeholder="Enter blog content" required></textarea>
+            </div>
+            <button type="submit" class="btn-save" id="saveBtn">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        async function loadBlog() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/blog/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('title').value = data.data.title || '';
+                    document.getElementById('content').value = data.data.content || '';
+                }
+            } catch (error) {
+                console.error('Error loading blog:', error);
+            }
+        }
+
+        document.getElementById('blogForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const token = localStorage.getItem('access_token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            if (user.role !== 'admin' && user.role !== 'super_admin') {
+                showMessage('You do not have permission to edit blog', 'error');
+                return;
+            }
+
+            const payload = {
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value
+            };
+
+            try {
+                const response = await fetch('/api/blog/', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                showMessage(data.success ? 'Blog saved successfully' : data.message, data.success ? 'success' : 'error');
+            } catch (error) {
+                showMessage('Error saving blog', 'error');
+            }
+        });
+
+        function showMessage(msg, type) {
+            const msgEl = document.getElementById('message');
+            msgEl.textContent = msg;
+            msgEl.className = `message ${type}`;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+
+        loadBlog();
+    </script>
+</body>
+</html>

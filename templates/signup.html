@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: radial-gradient(circle at 20% 20%, #d8e0ff, transparent 25%),
+                  radial-gradient(circle at 80% 10%, #ffe0f4, transparent 22%),
+                  linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 20px 60px rgba(0,0,0,0.2);
+            --radius: 18px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            color: var(--text);
+        }
+        .signup-card {
+            width: min(420px, 100%);
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 10px; }
+        .subtitle { color: var(--muted); margin-bottom: 26px; font-size: 0.95rem; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(91,123,255,0.1);
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .error { color: #f93e3e; font-size: 0.9rem; margin-top: 10px; display: none; }
+        .success { color: #0f9d58; font-size: 0.9rem; margin-top: 10px; display: none; }
+        .loading { display: none; text-align: center; font-size: 0.95rem; color: var(--muted); }
+        .link { margin-top: 14px; font-size: 0.95rem; text-align: center; }
+        .link a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="signup-card">
+        <h1>Create Account</h1>
+        <p class="subtitle">Choose a role: Employee, Admin, or Super Admin</p>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Minimum 6 characters" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" required>
+                    <option value="emp" selected>Employee</option>
+                    <option value="admin">Admin</option>
+                    <option value="super_admin">Super Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+            <div class="error" id="errorMsg"></div>
+            <div class="success" id="successMsg"></div>
+            <div class="loading" id="loading">Creating account...</div>
+        </form>
+        <div class="link">Already have an account? <a href="/login">Log in</a></div>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
+        const loading = document.getElementById('loading');
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            loading.style.display = 'block';
+
+            const payload = {
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value
+            };
+
+            try {
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    successMsg.textContent = 'Account created. Redirecting to dashboard...';
+                    successMsg.style.display = 'block';
+                    localStorage.setItem('access_token', data.access_token);
+                    localStorage.setItem('refresh_token', data.refresh_token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    setTimeout(() => window.location.href = '/dashboard', 800);
+                } else {
+                    errorMsg.textContent = data.message || 'Signup failed';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                errorMsg.textContent = 'Connection error';
+                errorMsg.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

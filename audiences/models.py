@@ -1,0 +1,215 @@
+import json
+from datetime import datetime
+from pathlib import Path
+ 
+ 
+class Audience:
+    """Audience model representing an audience record"""
+    
+    def __init__(self, audience_id, category_path, audience_info=None, created_by=None):
+        self.audience_id = audience_id
+        self.category_path = category_path
+        self.audience_info = audience_info or {}
+        self.created_by = created_by
+        self.created_at = datetime.now().isoformat()
+        self.updated_at = datetime.now().isoformat()
+    
+    def to_dict(self):
+        """Convert audience to dictionary"""
+        return {
+            'audience_id': self.audience_id,
+            'category_path': self.category_path,
+            'category_path_str': ' -> '.join(self.category_path),
+            'audience_info': self.audience_info,
+            'created_by': self.created_by,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
+ 
+ 
+class AudienceRepository:
+    """Audience data repository"""
+    
+    def __init__(self, db_path):
+        self.db_path = Path(db_path)
+        self.db_path.parent.mkdir(exist_ok=True)
+        self._load_data()
+    
+    def _load_data(self):
+        """Load audiences from database file"""
+        if self.db_path.exists():
+            try:
+                with open(self.db_path, 'r') as f:
+                    content = f.read().strip()
+                    if content:
+                        self.data = json.loads(content)
+                    else:
+                        self.data = {}
+            except (json.JSONDecodeError, ValueError):
+                # Handle corrupted JSON by resetting to empty dict
+                self.data = {}
+        else:
+            self.data = {}
+    
+    def _save_data(self):
+        """Save audiences to database file"""
+        with open(self.db_path, 'w') as f:
+            json.dump(self.data, f, indent=2)
+    
+    def add_audience_to_category(self, audience_id, category_path, audience_info=None, created_by=None):
+        """
+        Add audience to specific category path
+        
+        Args:
+            audience_id: Unique audience identifier
+            category_path: Category path list
+            audience_info: Additional audience information
+            created_by: User ID of creator
+        
+        Returns:
+            tuple: (audience_dict, message)
+        """
+        # Create audience record if not exists
+        if audience_id not in self.data:
+            self.data[audience_id] = {
+                'audience_id': audience_id,
+                'audience_info': audience_info or {},
+                'categories': [],
+                'created_by': created_by,
+                'created_at': datetime.now().isoformat(),
+                'updated_at': datetime.now().isoformat()
+            }
+        
+        # Check if category path already exists
+        category_str = ' -> '.join(category_path)
+        for existing in self.data[audience_id]['categories']:
+            if existing['category_path_str'] == category_str:
+                return self.data[audience_id], "Audience already assigned to this category"
+        
+        # Add category path
+        self.data[audience_id]['categories'].append({
+            'category_path': category_path,
+            'category_path_str': category_str,
+            'assigned_at': datetime.now().isoformat()
+        })
+        self.data[audience_id]['updated_at'] = datetime.now().isoformat()
+        
+        self._save_data()
+        return self.data[audience_id], "Audience added to category successfully"
+    
+    def get_audience_categories(self, audience_id):
+        """
+        Get all categories assigned to an audience
+        
+        Args:
+            audience_id: Audience identifier
+        
+        Returns:
+            list: List of category paths
+        """
+        if audience_id not in self.data:
+            return []
+        
+        return self.data[audience_id].get('categories', [])
+    
+    def get_audiences_by_category(self, category_path):
+        """
+        Get all audiences assigned to a specific category
+        
+        Args:
+            category_path: Category path list
+        
+        Returns:
+            list: List of audiences
+        """
+        category_str = ' -> '.join(category_path)
+        audiences = []
+        
+        for audience_id, data in self.data.items():
+            for cat in data.get('categories', []):
+                if cat['category_path_str'] == category_str:
+                    audiences.append({
+                        'audience_id': audience_id,
+                        'audience_info': data.get('audience_info', {}),
+                        'assigned_at': cat['assigned_at']
+                    })
+                    break
+        
+        return audiences
+    
+    def remove_audience_from_category(self, audience_id, category_path):
+        """
+        Remove audience from specific category
+        
+        Args:
+            audience_id: Audience identifier
+            category_path: Category path list
+        
+        Returns:
+            tuple: (success, message)
+        """
+        if audience_id not in self.data:
+            return False, "Audience not found"
+        
+        category_str = ' -> '.join(category_path)
+        categories = self.data[audience_id]['categories']
+        
+        for i, cat in enumerate(categories):
+            if cat['category_path_str'] == category_str:
+                del categories[i]
+                self.data[audience_id]['updated_at'] = datetime.now().isoformat()
+                self._save_data()
+                return True, "Audience removed from category successfully"
+        
+        return False, "Audience not assigned to this category"
+    
+    def get_all_audiences(self):
+        """Get all audiences"""
+        return list(self.data.values())
+    
+    def get_audience_by_id(self, audience_id):
+        """Get audience by ID"""
+        return self.data.get(audience_id)
+    
+    def update_audience_info(self, audience_id, audience_info):
+        """
+        Update audience information - only modifies existing fields
+        Does not create new nested objects or child nodes
+        
+        Args:
+            audience_id: Audience identifier
+            audience_info: Dictionary with fields to update
+        
+        Returns:
+            tuple: (success, message)
+        """
+        if audience_id not in self.data:
+            return False, "Audience not found"
+        
+        # Get existing audience_info
+        existing_info = self.data[audience_id].get('audience_info', {})
+        
+        # Only update fields that already exist in the structure
+        # This prevents creating new nested objects
+        allowed_fields = ['names', 'min_age', 'max_age', 'description', 'target_criteria']
+        
+        for field in allowed_fields:
+            if field in audience_info:
+                existing_info[field] = audience_info[field]
+        
+        # Update the audience_info with modified fields only
+        self.data[audience_id]['audience_info'] = existing_info
+        self.data[audience_id]['updated_at'] = datetime.now().isoformat()
+        
+        self._save_data()
+        return True, "Audience information updated successfully"
+    
+    def get_statistics(self):
+        """Get audience statistics"""
+        total_audiences = len(self.data)
+        total_assignments = sum(len(a.get('categories', [])) for a in self.data.values())
+        
+        return {
+            'total_audiences': total_audiences,
+            'total_assignments': total_assignments
+        }

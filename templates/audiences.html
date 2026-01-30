@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audiences</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 28px;
+        }
+        .shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            color: var(--text);
+        }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+        header h1 { font-size: 1.8rem; }
+        .btn-back {
+            text-decoration: none;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            color: var(--text);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .btn-back:hover { background: #e5e7eb; }
+        .message { padding: 12px; border-radius: 8px; margin-bottom: 14px; display: none; }
+        .message.success { background: #d4edda; color: #155724; }
+        .message.error { background: #f8d7da; color: #721c24; }
+        .search-bar { margin-bottom: 20px; }
+        .search-bar input { width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; }
+        .audience-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .audience-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.2s;
+        }
+        .audience-box:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .audience-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px; }
+        .audience-title { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+        .audience-id { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+        .audience-info { margin-bottom: 12px; }
+        .info-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.9rem; }
+        .info-label { font-weight: 600; color: var(--muted); min-width: 80px; }
+        .info-value { color: var(--text); }
+        .audience-categories { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; }
+        .categories-title { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+        .category-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: linear-gradient(135deg, #5b7bff20, #7f53ac20);
+            color: var(--primary);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+        .audience-actions { display: flex; gap: 8px; margin-top: 12px; }
+        .btn-edit, .btn-delete { padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+        .btn-edit { background: linear-gradient(135deg, #5b7bff, #7f53ac); color: white; }
+        .btn-delete { background: #f93e3e; color: white; }
+        .btn-edit:hover, .btn-delete:hover { transform: translateY(-1px); }
+        .loading-text { text-align: center; color: var(--muted); padding: 40px; }
+        .empty-state { text-align: center; color: var(--muted); padding: 60px 20px; }
+        .empty-state h3 { margin-bottom: 10px; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: var(--card); margin: 5% auto; padding: 0; border-radius: var(--radius); max-width: 600px; box-shadow: var(--shadow); }
+        .modal-header { padding: 20px 24px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h2 { font-size: 1.4rem; }
+        .close-btn { font-size: 28px; font-weight: bold; color: var(--muted); cursor: pointer; border: none; background: none; }
+        .close-btn:hover { color: var(--text); }
+        .modal-body { padding: 24px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #e5e7eb; border-radius: 8px; font-family: inherit; font-size: 1rem; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .form-help-text { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+        .modal-btn { padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .modal-btn.primary { background: linear-gradient(135deg, #5b7bff, #7f53ac); color: white; }
+        .modal-btn.secondary { background: #e5e7eb; color: var(--text); }
+        .age-range-container { display: flex; gap: 10px; align-items: center; }
+        .age-input-wrapper { flex: 1; }
+        .age-range-label { color: var(--muted); }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>👥 Audiences</h1>
+            <a href="/dashboard" class="btn-back">← Back to Dashboard</a>
+        </header>
+
+        <div class="message" id="message"></div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search audiences by name, ID, or categories...">
+        </div>
+
+        <div id="audiencesContainer">
+            <p class="loading-text">Loading audiences...</p>
+        </div>
+    </div>
+
+    <!-- Edit Audience Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✎ Edit Audience</h2>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editAudienceId">
+                    
+                    <div class="form-group">
+                        <label for="editNames">Audience Names *</label>
+                        <input type="text" id="editNames" placeholder="e.g., cardio, fitness, yoga" required>
+                        <small class="form-help-text">Comma-separated list of audience names</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Age Range *</label>
+                        <div class="age-range-container">
+                            <div class="age-input-wrapper">
+                                <input type="number" id="editMinAge" placeholder="18" min="0" max="150" required>
+                            </div>
+                            <span class="age-range-label">to</span>
+                            <div class="age-input-wrapper">
+                                <input type="number" id="editMaxAge" placeholder="65" min="0" max="150" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea id="editDescription" placeholder="Brief description about the audience"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editTargetCriteria">Target Criteria</label>
+                        <input type="text" id="editTargetCriteria" placeholder="e.g., age:25-40,interest:tech">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="modal-btn secondary" onclick="closeEditModal()">Cancel</button>
+                        <button type="submit" class="modal-btn primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allAudiences = [];
+
+        async function loadAudiences() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/audiences/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Audiences loaded:', data);
+
+                if (data.success) {
+                    allAudiences = data.audiences;
+                    renderAudiences(allAudiences);
+                } else {
+                    document.getElementById('audiencesContainer').innerHTML = `
+                        <div class="empty-state">
+                            <h3>Failed to load audiences</h3>
+                            <p>${data.message || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading audiences:', error);
+                document.getElementById('audiencesContainer').innerHTML = `
+                    <div class="empty-state">
+                        <h3>Error loading audiences</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderAudiences(audiences) {
+            const container = document.getElementById('audiencesContainer');
+
+            if (audiences.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No audiences found</h3>
+                        <p>No audiences match your search criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = 'audience-grid';
+
+            audiences.forEach(aud => {
+                const box = document.createElement('div');
+                box.className = 'audience-box';
+
+                const names = aud.audience_info?.names || [];
+                const namesDisplay = Array.isArray(names) ? names.join(', ') : (names || 'Unnamed');
+                const minAge = aud.audience_info?.min_age ?? 'N/A';
+                const maxAge = aud.audience_info?.max_age ?? 'N/A';
+                const description = aud.audience_info?.description || '';
+                const criteria = aud.audience_info?.target_criteria || '';
+
+                let categoriesHtml = '';
+                if (aud.categories && aud.categories.length > 0) {
+                    categoriesHtml = `
+                        <div class="audience-categories">
+                            <div class="categories-title">📂 Categories (${aud.categories.length}):</div>
+                            ${aud.categories.map(cat => `<span class="category-tag">${cat.category_path_str}</span>`).join('')}
+                        </div>
+                    `;
+                }
+
+                box.innerHTML = `
+                    <div class="audience-header">
+                        <div>
+                            <div class="audience-title">${namesDisplay}</div>
+                            <div class="audience-id">ID: ${aud.audience_id}</div>
+                        </div>
+                    </div>
+                    <div class="audience-info">
+                        <div class="info-row">
+                            <span class="info-label">Age Range:</span>
+                            <span class="info-value">${minAge} - ${maxAge} years</span>
+                        </div>
+                        ${description ? `
+                        <div class="info-row">
+                            <span class="info-label">Description:</span>
+                            <span class="info-value">${description}</span>
+                        </div>
+                        ` : ''}
+                        ${criteria ? `
+                        <div class="info-row">
+                            <span class="info-label">Criteria:</span>
+                            <span class="info-value">${criteria}</span>
+                        </div>
+                        ` : ''}
+                        <div class="info-row">
+                            <span class="info-label">Created:</span>
+                            <span class="info-value">${new Date(aud.created_at).toLocaleString()}</span>
+                        </div>
+                    </div>
+                    ${categoriesHtml}
+                    <div class="audience-actions">
+                        <button class="btn-edit" onclick='openEditModal(${JSON.stringify(aud).replace(/'/g, "\\'")} )'>✎ Edit</button>
+                    </div>
+                `;
+
+                grid.appendChild(box);
+            });
+
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+
+        function openEditModal(audience) {
+            document.getElementById('editAudienceId').value = audience.audience_id;
+            
+            const names = audience.audience_info?.names || [];
+            document.getElementById('editNames').value = Array.isArray(names) ? names.join(', ') : names;
+            document.getElementById('editMinAge').value = audience.audience_info?.min_age || '';
+            document.getElementById('editMaxAge').value = audience.audience_info?.max_age || '';
+            document.getElementById('editDescription').value = audience.audience_info?.description || '';
+            document.getElementById('editTargetCriteria').value = audience.audience_info?.target_criteria || '';
+            
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('editForm').reset();
+        }
+
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const token = localStorage.getItem('access_token');
+            const audienceId = document.getElementById('editAudienceId').value;
+            
+            // Process names
+            const nameInput = document.getElementById('editNames').value.trim();
+            const names = nameInput.split(',').map(n => n.trim()).filter(n => n.length > 0);
+            
+            // Validate age range
+            const minAge = parseInt(document.getElementById('editMinAge').value);
+            const maxAge = parseInt(document.getElementById('editMaxAge').value);
+            
+            if (isNaN(minAge) || isNaN(maxAge) || minAge < 0 || maxAge < 0 || minAge > maxAge) {
+                showMessage('Invalid age range', 'error');
+                return;
+            }
+            
+            // Build payload with ONLY existing fields - no new nested objects
+            const payload = {
+                audience_info: {
+                    names: names,
+                    min_age: minAge,
+                    max_age: maxAge,
+                    description: document.getElementById('editDescription').value.trim(),
+                    target_criteria: document.getElementById('editTargetCriteria').value.trim()
+                }
+            };
+            
+            console.log('Updating audience:', audienceId, payload);
+            
+            try {
+                const response = await fetch(`/api/audiences/${audienceId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('Audience updated successfully', 'success');
+                    closeEditModal();
+                    loadAudiences(); // Reload to show updated data
+                } else {
+                    showMessage(data.message || 'Update failed', 'error');
+                }
+            } catch (error) {
+                console.error('Error updating audience:', error);
+                showMessage('Connection error. Please try again.', 'error');
+            }
+        });
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (!query) {
+                renderAudiences(allAudiences);
+                return;
+            }
+            
+            const filtered = allAudiences.filter(aud => {
+                const names = aud.audience_info?.names || [];
+                const namesStr = Array.isArray(names) ? names.join(' ') : names;
+                const categoriesStr = aud.categories?.map(c => c.category_path_str).join(' ') || '';
+                
+                return aud.audience_id.toLowerCase().includes(query) ||
+                       namesStr.toLowerCase().includes(query) ||
+                       categoriesStr.toLowerCase().includes(query);
+            });
+            
+            renderAudiences(filtered);
+        });
+
+        window.onclick = (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+
+        function showMessage(msg, type) {
+            const msgEl = document.getElementById('message');
+            msgEl.textContent = msg;
+            msgEl.className = `message ${type}`;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+
+        loadAudiences();
+    </script>
+</body>
+</html>

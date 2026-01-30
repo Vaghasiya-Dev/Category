@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 28px;
+        }
+        .shell {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            color: var(--text);
+        }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+        header h1 { font-size: 1.8rem; }
+        .btn-back {
+            text-decoration: none;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            color: var(--text);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-family: inherit; font-size: 1rem; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(91,123,255,0.1); }
+        .btn-save {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-save:hover { transform: translateY(-2px); }
+        .message { padding: 12px; border-radius: 8px; margin-bottom: 14px; display: none; }
+        .message.success { background: #d4edda; color: #155724; }
+        .message.error { background: #f8d7da; color: #721c24; }
+        .toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+        .switch input { display: none; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(26px); }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>⚙️ Settings</h1>
+            <a href="/dashboard" class="btn-back">← Back to Dashboard</a>
+        </header>
+
+        <div class="message" id="message"></div>
+
+        <form id="settingsForm">
+            <div class="form-group">
+                <label for="theme">Theme</label>
+                <select id="theme">
+                    <option value="login-style">Login Style</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+
+            <div class="form-group toggle">
+                <label for="signups">Allow Signups</label>
+                <label class="switch">
+                    <input type="checkbox" id="signups">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-save" id="saveBtn">Save Settings</button>
+        </form>
+    </div>
+
+    <script>
+        async function loadSettings() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/settings/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('theme').value = data.data.theme || 'login-style';
+                    document.getElementById('signups').checked = data.data.allow_signups || false;
+                }
+            } catch (error) {
+                console.error('Error loading settings:', error);
+            }
+        }
+
+        document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const token = localStorage.getItem('access_token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            if (user.role !== 'admin' && user.role !== 'super_admin') {
+                showMessage('You do not have permission to update settings', 'error');
+                return;
+            }
+
+            const payload = {
+                theme: document.getElementById('theme').value,
+                allow_signups: document.getElementById('signups').checked
+            };
+
+            try {
+                const response = await fetch('/api/settings/', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                showMessage(data.success ? 'Settings saved successfully' : data.message, data.success ? 'success' : 'error');
+            } catch (error) {
+                showMessage('Error saving settings', 'error');
+            }
+        });
+
+        function showMessage(msg, type) {
+            const msgEl = document.getElementById('message');
+            msgEl.textContent = msg;
+            msgEl.className = `message ${type}`;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+
+        loadSettings();
+    </script>
+</body>
+</html>

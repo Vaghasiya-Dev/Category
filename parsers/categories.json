@@ -1,0 +1,2853 @@
+{
+  "Main Product Category": {},
+  "Electronics": {
+    "Audio Device": {
+      "Earbuds": {},
+      "Headphones": {},
+      "Specker & Soundbar": {},
+      "Wired Earphone": {},
+      "Neckbands": {}
+    },
+    "Camera Accessories": {
+      "Instant Camera": {},
+      "Security Camera": {},
+      "Camera Lens": {}
+    },
+    "Electrical Accessories": {
+      "Batteries": {},
+      "Chargers & Adaptors": {},
+      "Door Bells": {},
+      "Extension Cards": {},
+      "Torch & Lights": {}
+    },
+    "Home Appliances": {
+      "AC'S & Coolers": {},
+      "Air Purifiers": {},
+      "Fans": {},
+      "Garment Steamers": {},
+      "Geysers & Heaters": {},
+      "Hand Accessories": {},
+      "Immersion Roads": {},
+      "Irons": {},
+      "Refrigerators": {},
+      "Room Heater": {},
+      "Smart Devices": {},
+      "Steamers & Irons": {},
+      "Vacuum Cleaners": {},
+      "Washing Machines": {},
+      "Water Heaters": {},
+      "Water Purifiers": {}
+    },
+    "Kitchen Application": {
+      "Blenders & Choppers": {},
+      "Coffee Makers & Kettles": {},
+      "Induction Stoves": {},
+      "Juicer": {},
+      "Mixer": {},
+      "Grinder": {},
+      "Microwaves": {},
+      "Air Fryers": {},
+      "Rice Cooker": {},
+      "Roti Maker": {},
+      "Toaster": {},
+      "Boiler": {},
+      "Yogurt Maker": {}
+    },
+    "Persinal Care & Grooming": {
+      "Body Massagers": {},
+      "Electric Toothbrush": {},
+      "Epilators & Trimmers": {},
+      "Hair Styling Accessories": {},
+      "Weighing Machine": {}
+    },
+    "Phone & Laptop Accessory": {
+      "Cables": {},
+      "Hard Disks": {},
+      "Pendrives": {},
+      "Laptop Stands": {},
+      "Mobile Holders": {},
+      "Other Accessoires": {},
+      "Power Banks": {},
+      "Printers & Ink": {}
+    },
+    "Phone, Laptop & Tablets": {
+      "Keypad Mobiles": {},
+      "Laptops": {},
+      "Smartphones": {},
+      "Tablets": {}
+    },
+    "Smart Wearables": {},
+    "TVs & Monitors": {
+      "LED TVs": {},
+      "Monitors": {}
+    }
+  },
+  "Fashion": {
+    "Fashion Essentials": {
+      "Belts": {},
+      "Eyewear": {},
+      "Handbags": {},
+      "Wallets": {},
+      "Jewellery": {},
+      "Socks": {},
+      "Watches": {}
+    },
+    "Footwear": {
+      "Kids Footwear": {},
+      "Men's Footwear": {},
+      "Women's Footwear": {}
+    },
+    "Kids Apparel": {
+      "Boys": {},
+      "Girls": {}
+    },
+    "Men's Apparel": {
+      "Active Wear": {},
+      "Causual": {},
+      "Ethnic Wear for Men": {},
+      "Formal": {},
+      "Innerwear": {},
+      "Men's Accessories": {}
+    },
+    "Travel": {
+      "Bags & Backpacks": {},
+      "Luggage & Accessories": {},
+      "Organisers & Accessories": {},
+      "Suitcase & Trolleys": {}
+    },
+    "Women's Apparel": {
+      "Ethnic Wear for Women": {},
+      "Lingerie": {},
+      "Night Wear": {},
+      "Sports Wear": {},
+      "Western Wear": {},
+      "Women's Accessories": {}
+    }
+  },
+  "Fruits & Vegetables": {
+    "Cuts & Sprouts": {
+      "Cuts & Peeled Veggies": {},
+      "Cut Fruit": {},
+      "Tender Coconut": {},
+      "Fresh Juices & Milkshakes": {},
+      "Fresh Salads & Sprouts": {},
+      "Recipe Packs": {}
+    },
+    "Exotic Fruits & Veggies": {
+      "Exotic Fruits": {},
+      "Exotic Vegetables": {}
+    },
+    "Flower Bouquest, Bunches": {
+      "Gifting Flower & Bouquets": {},
+      "Pooja Flowers": {},
+      "Pooja Leaves": {}
+    },
+    "Fresh Fruits": {
+      "Apples": {},
+      "Pomegranate": {},
+      "Banana": {},
+      "Sapota": {},
+      "Papaya": {},
+      "Fruits Baskets": {},
+      "Kiwi": {},
+      "Melon": {},
+      "Citrus Fruits": {},
+      "Mangoes": {},
+      "Seasonal Fruits": {}
+    },
+    "Fresh Vegetables": {
+      "Beans": {},
+      "Brinjals": {},
+      "Okra": {},
+      "Cabbage": {},
+      "Cauliflower": {},
+      "Cucumber": {},
+      "Capsicum": {},
+      "Gourd": {},
+      "Pumpkin": {},
+      "Drumstick": {},
+      "Leafy Vegatables": {},
+      "Local Vegatables": {},
+      "Potato": {},
+      "Onion": {},
+      "Tomato": {},
+      "Root Vegatables": {}
+    },
+    "Herbs & Seasonings": {
+      "Indian & Exotics Herbs": {},
+      "Lrmon, Ginger & Garlic": {}
+    },
+    "Organic Fruits & Vegetables": {
+      "Organic Fruits": {},
+      "Organic Vegetables": {}
+    }
+  },
+  "Foodgrains, Oil & Masala": {
+    "Atta, Flors & Sooji": {
+      "Atta Whole Wheat": {},
+      "Rice & Other Flours": {},
+      "Sooji": {},
+      "Maida": {},
+      "Besan": {}
+    },
+    "Dals & Pulses": {
+      "Cereals": {},
+      "Millets": {},
+      "Toor": {},
+      "Channa": {},
+      "Moong Dal": {},
+      "Urad": {},
+      "Other Dals": {}
+    },
+    "Dry Fruits": {
+      "Almonds": {},
+      "Cashews": {},
+      "Dates, Figs & Raisins": {},
+      "Dried Fruits & Berries": {},
+      "Makhana": {},
+      "Mukhwas": {},
+      "Other Dry Fruits": {},
+      "Raisins": {},
+      "Snacking Dry Fruits,Seeds": {},
+      "Walnut & Pistachio": {}
+    },
+    "Edible Oils & Ghee": {
+      "Blended Cooking Oils": {},
+      "Cold Pressed Oil": {},
+      "Cooking Coconut Oil": {},
+      "Cotton Seed Oil": {},
+      "Ghee & Vanaspati": {},
+      "Gingelly Oil": {},
+      "Groundnut Oil": {},
+      "Olive & Canola Oils": {},
+      "Other Edible Oils": {},
+      "Soya & Mustard Oils": {},
+      "Sunflower, Rice Bran Oil": {}
+    },
+    "Masalas & Spices": {
+      "Blended Masalas": {},
+      "Cooking Pastes": {},
+      "Herbs & Seasoning": {},
+      "Powdered Spices": {},
+      "Whole Spices": {}
+    },
+    "Organic Staples": {
+      "Organic Dals & Pulses": {},
+      "Organic Dry Fruits": {},
+      "Organic Edible Oil, Ghee": {},
+      "Organic Flours": {},
+      "Organic Masalas & Spices": {},
+      "Organic Millet & Flours": {},
+      "Organic Rice, Other Rice": {},
+      "Organic Sugar, Jaggery": {}
+    },
+    "Rice & Rice Products": {
+      "Basmati Rice": {},
+      "Boiled & Steam Rice": {},
+      "Poha, Sabudana & Murmura": {},
+      "Raw Rice": {}
+    },
+    "Salt, Suger & Jaggery": {
+      "Salts": {},
+      "Sugar & Jaggery": {},
+      "Sugarfree Sweeteners": {}
+    }
+  },
+  "Backery, Cakes & Dairy": {
+    "Bakery Snacks": {
+      "Bread Sticks & Lavash": {},
+      "Breadcrumbs & Croutons": {},
+      "Cheese & Garlic Bread": {},
+      "Puffs, Patties, Sandwich": {}
+    },
+    "Breads & Buns": {
+      "Brown, Wheat & Multigrain": {},
+      "Buns, Pavs & Pizza Base": {},
+      "Milk, White & Sandwich": {}
+    },
+    "Cakes & Pastries": {
+      "Birthday & Party Cakes": {},
+      "Doughnuts & Mousses": {},
+      "Muffins & Cup Cakes": {},
+      "Pastries & Brownies": {},
+      "Tea Cakes & Slice Cakes": {}
+    },
+    "Cookies, Rusk & Khari": {
+      "Bakery Biscuits, Cookies": {},
+      "Healthy Organic Cookies": {},
+      "Khari & Cream Rolls": {},
+      "Premium Cookies": {},
+      "Rusks": {}
+    },
+    "Dairy": {
+      "Butter & Margarine": {},
+      "Buttermilk & Lassi": {},
+      "Cheese": {},
+      "Condensed, Powdered Milk": {},
+      "Curd": {},
+      "Flavoured, Soya Milk": {},
+      "Fresh Milk": {},
+      "Milk": {},
+      "Paneer, Tofu & Cream": {},
+      "Yogurt & Shrikhand": {}
+    },
+    "Gourmet Breads": {
+      "Bagels & Baguette": {},
+      "Croissants, Bagels": {},
+      "Gourmet Bread": {},
+      "Panini, Focaccia & Pita": {}
+    },
+    "Ice Creams": {},
+    "Non Dairy": {
+      "Dairy Free (Vegan)": {}
+    }
+  },
+  "Beverages": {
+    "Coffee": {
+      "Ground Coffee": {},
+      "Instant Coffee": {}
+    },
+    "Energy & Soft Drinks": {
+      "Cold Drinks": {},
+      "Glucose Powder, Tablets": {},
+      "Icetea, Non Aerated Drink": {},
+      "Non Alcoholic Drinks": {},
+      "Soda & Cocktail Mix": {},
+      "Sports & Energy Drinks": {}
+    },
+    "Fruit Juices & Drinks": {
+      "Juices": {},
+      "Syrups & Concentrates": {},
+      "Unsweetened, Cold Press": {}
+    },
+    "Nutrition Mix, Supplement": {
+      "Children (2-5 Yrs)": {},
+      "Diabetic Drinks": {},
+      "Kids (5+Yrs)": {},
+      "Men & Women": {}
+    },
+    "Tea": {
+      "Exotic & Flavoured Tea": {},
+      "Green Tea": {},
+      "Leaf & Dust Tea": {},
+      "Tea Bags": {}
+    },
+    "Water": {
+      "Flavoured Water": {},
+      "Packaged Water": {},
+      "Spring Water": {}
+    }
+  },
+  "Snackes & Branded Foods": {
+    "Biscuits & Cookies": {
+      "Cookies": {},
+      "Cream Biscuits & Wafers": {},
+      "Glucose & Milk Biscuits": {},
+      "Marie, Health, Digestive": {},
+      "Salted Biscuits": {}
+    },
+    "Breakfast Cereals": {
+      "Flakes": {},
+      "Granola & Cereal Bars": {},
+      "Kids Cereal": {},
+      "Muesli": {},
+      "Oats & Porridge": {}
+    },
+    "Chocolates & Candies": {
+      "Chocolates": {},
+      "Gift Boxes": {},
+      "Mints & Chewing Gum": {},
+      "Toffee, Candy & Lollypop": {}
+    },
+    "Frozen Veggies & Snacks": {
+      "Frozen Indian Breads": {},
+      "Frozen Non-Veg Snacks": {},
+      "Frozen Veg Snacks": {},
+      "Frozen Vegetables": {}
+    },
+    "Indian Mithai": {
+      "Chikki & Gajjak": {},
+      "Fresh Sweets": {},
+      "Tinned, Packed Sweets": {}
+    },
+    "Noodle, Pasta, Vermicelli": {
+      "Cup Noodles": {},
+      "Hakka Noodles": {},
+      "Instant Noodles": {},
+      "Instant Pasta": {},
+      "Pasta & Macaroni": {},
+      "Vermicelli": {}
+    },
+    "Pickles & Chutney": {
+      "Chutney Powder": {},
+      "Lime & Mango Pickle": {},
+      "Non Veg Pickle": {},
+      "Other Veg Pickle": {}
+    },
+    "Ready To Cook & Eat": {
+      "Breakfast & Snack Mixes": {},
+      "Canned Food": {},
+      "Dessert Mixes": {},
+      "Heat & Eat Ready Meals": {},
+      "Home Baking": {},
+      "Papads, Ready To Fry": {},
+      "Soups": {}
+    },
+    "Snacks & Namkeen": {
+      "Chips & Corn Snacks": {},
+      "Namkeen & Savoury Snacks": {}
+    },
+    "Spreads, Sauces, Ketchup": {
+      "Chilli & Soya Sauce": {},
+      "Choco & Nut Spread": {},
+      "Dips & Dressings": {},
+      "Honey": {},
+      "Jam, Conserve, Marmalade": {},
+      "Mayonnaise": {},
+      "Tomato Ketchup & Sauces": {},
+      "Vinegar": {}
+    }
+  },
+  "Beauty & Hygiene": {
+    "Bath & Hand Wash": {
+      "Bath Salts & Oils": {},
+      "Bathing Accessories": {},
+      "Bathing Bars & Soaps": {},
+      "Body Scrubs & Exfoliants": {},
+      "Hand Wash & Sanitizers": {},
+      "Shower Gel & Body Wash": {},
+      "Talcum Powder": {}
+    },
+    "Feminine Hygiene": {
+      "Hair Removal": {},
+      "Intimate Wash & Care": {},
+      "Panty Liners": {},
+      "Period Panties & Liners": {},
+      "Sanitary Napkins": {},
+      "Tampons & Menstrual Cups": {}
+    },
+    "Fragrances & Deos": {
+      "Attar": {},
+      "Body Sprays & Mists": {},
+      "Eau De Cologne": {},
+      "Eau De Parfum": {},
+      "Eau De Toilette": {},
+      "Gift Sets": {},
+      "Men's Deodorants": {},
+      "Perfume": {},
+      "Women's Deodorants": {}
+    },
+    "Hair Care": {
+      "Dry Shampoo & Conditioner": {},
+      "Hair & Scalp Treatment": {},
+      "Hair Color": {},
+      "Hair Oil & Serum": {},
+      "Hair Styling": {},
+      "Shampoo & Conditioner": {},
+      "Tools & Accessories": {}
+    },
+    "Health & Medicine": {
+      "Adult Diapers": {},
+      "Antiseptics & Bandages": {},
+      "Ayurveda": {},
+      "Cotton & Ear Buds": {},
+      "Everyday Medicine": {},
+      "Face Masks & Safety Gears": {},
+      "Healthcare Devices": {},
+      "Slimming Products": {},
+      "Supplements & Proteins": {}
+    },
+    "Makeup": {
+      "Eyes": {},
+      "Face": {},
+      "Lips": {},
+      "Makeup Accessories": {},
+      "Makeup Kits & Gift Sets": {},
+      "Nails": {}
+    },
+    "Men's Grooming": {
+      "Bath & Shower": {},
+      "Combos & Gift Sets": {},
+      "Deodorant": {},
+      "Face & Body": {},
+      "Hair Care & Styling": {},
+      "Moustache & Beard Care": {},
+      "Shaving Care": {},
+      "Talc": {}
+    },
+    "Oral Care": {
+      "Floss & Tongue Cleaner": {},
+      "Mouthwash": {},
+      "Toothbrush": {},
+      "Toothpaste": {}
+    },
+    "Sexual Wellness": {
+      "Adult Games": {},
+      "Condoms": {},
+      "Kits & Contraceptive": {},
+      "Lubricants": {},
+      "Massagers": {},
+      "Performance Enhancers": {}
+    },
+    "Skin Care": {
+      "Aromatherapy": {},
+      "Body Care": {},
+      "Eye Care": {},
+      "Face Care": {},
+      "Lip Care": {}
+    }
+  },
+  "Cleaning & Household": {
+    "All Purpose Cleaners": {
+      "Disinfectant Spray & Cleaners": {},
+      "Floor & Other Cleaners": {},
+      "Imported Cleaners": {},
+      "Kitchen, Glass & Drain": {},
+      "Metal, Furniture Cleaner": {},
+      "Toilet Cleaners": {}
+    },
+    "Automotive Accessories": {
+      "Helmets": {}
+    },
+    "Bins & Bathroom Ware": {
+      "Bath Stool, Basin & Sets": {},
+      "Buckets & Mugs": {},
+      "Dustbins": {},
+      "Hangers, Clips & Rope": {},
+      "Laundry, Storage Baskets": {},
+      "Other Plastic Ware": {},
+      "Soap Cases & Dispensers": {}
+    },
+    "Books": {
+      "Children's Books": {},
+      "Fiction": {},
+      "Non-Fiction": {}
+    },
+    "Car & Shoe Care": {
+      "Car Freshener": {},
+      "Car Polish & Cleaners": {},
+      "Shoe Polish": {},
+      "Shoe Shiners & Brushes": {}
+    },
+    "Detergents & Dishwash": {
+      "Descaler": {},
+      "Detergent Bars": {},
+      "Detergent Powder, Liquid": {},
+      "Dishwash Bars & Powders": {},
+      "Dishwash Liquids & Pastes": {},
+      "Fabric Pre, Post Wash": {},
+      "Imported Home Care": {},
+      "Machine Dishwasher": {}
+    },
+    "Disposables, Garbage Bag": {
+      "Aluminium Foil, Clingwrap": {},
+      "Garbage Bags": {},
+      "Kitchen Rolls": {},
+      "Paper Napkin, Tissue Box": {},
+      "Toilet Paper": {},
+      "Wet Wipe, Pocket Tissues": {}
+    },
+    "Fresheners & Repellents": {
+      "Air Freshener": {},
+      "Insect Repellent": {},
+      "Mosquito Repellent": {}
+    },
+    "Mops, Brushes & Scrubs": {
+      "Brooms & Dust Pans": {},
+      "Dust Cloth & Wipes": {},
+      "Mops, Wipers": {},
+      "Toilet & Other Brushes": {},
+      "Utensil Scrub-Pad, Glove": {}
+    },
+    "Party & Festive Needs": {
+      "Caps, Balloons & Candles": {},
+      "Coins & Bars": {},
+      "Crackers": {},
+      "Decorations": {},
+      "Disposable Cups & Plates": {},
+      "Gift Wraps & Bags": {},
+      "Gifts": {},
+      "Seasonal Accessories": {}
+    },
+    "Pooja Needs": {
+      "Agarbatti, Incense Sticks": {},
+      "Camphor & Wicks": {},
+      "Candles & Match Box": {},
+      "Lamp & Lamp Oil": {},
+      "Other Pooja Needs": {},
+      "Pooja Thali & Bells": {}
+    },
+    "Sports & Fitness": {
+      "Exercise & Fitness": {},
+      "Indoor Sports": {},
+      "Outdoor Sports": {},
+      "Swimming": {}
+    },
+    "Stationery": {
+      "Art Supplies": {},
+      "Exam Pads & Pencil Boxes": {},
+      "Notebook & Journal": {},
+      "Office Supplies": {},
+      "Pencil, Eraser & Sharpener": {},
+      "Pens & Markers": {},
+      "Scissor, Glue & Tape": {},
+      "Stationery Kits": {}
+    },
+    "Toys & Games": {
+      "Baby & Toddler Toys": {},
+      "Board Games & Puzzles": {},
+      "Cards & Party Games": {},
+      "Dolls & Soft Toys": {},
+      "Learning & Education": {},
+      "Vehicle & Action Toys": {}
+    }
+  },
+  "Kitchen, Garden & Pets": {
+    "Appliances & Electricals": {
+      "Grills & Toasters": {}
+    },
+    "Bakeware": {
+      "Bakeware Accessories": {},
+      "Bakeware Moulds, Cutters": {},
+      "Baking Tools & Brushes": {}
+    },
+    "Cookware & Non Stick": {
+      "Cook And Serve": {},
+      "Cookware Sets": {},
+      "Gas Stove": {},
+      "Kadai & Fry Pans": {},
+      "Microwavable Cookware": {},
+      "Pressure Cookers": {},
+      "Tawa & Sauce Pan": {}
+    },
+    "Crockery & Cutlery": {
+      "Cups, Mugs & Tumblers": {},
+      "Cutlery, Spoon & Fork": {},
+      "Dinner Sets": {},
+      "Glassware": {},
+      "Plates & Bowls": {}
+    },
+    "Flask & Casserole": {
+      "Casserole": {},
+      "Vacuum Flask": {}
+    },
+    "Gardening": {
+      "Fertilizers & Pesticides": {},
+      "Gardening Tools": {},
+      "Live Plants": {},
+      "Pots, Planters & Trays": {},
+      "Seeds & Sapling": {}
+    },
+    "Home Furnishing": {
+      "Bath Linen": {},
+      "Bedsheets": {},
+      "Blankets & Comforters": {},
+      "Curtains": {},
+      "Mats & Doormats": {},
+      "Mattress & Protector": {},
+      "Pillows & Cushions": {}
+    },
+    "Kitchen Accessories": {
+      "Choppers & Graters": {},
+      "Kitchen Tools & Other Accessories": {},
+      "Knives & Peelers": {},
+      "Lighters": {},
+      "Strainer, Ladle, Spatula": {}
+    },
+    "Pet Food & Accessories": {
+      "Health Supplements": {},
+      "Pet Cleaning & Grooming": {},
+      "Pet Collars & Leashes": {},
+      "Pet Feeding Support": {},
+      "Pet Meals & Treats": {},
+      "Pet Toys": {}
+    },
+    "Steel Utensils": {
+      "Bowls & Vessels": {},
+      "Copper Utensils": {},
+      "Plates & Tumblers": {},
+      "Steel Lunch Boxes": {},
+      "Steel Storage Containers": {}
+    },
+    "Storage & Accessories": {
+      "Cloth Dryer & Iron Table": {},
+      "Containers Sets": {},
+      "Lunch Boxes & Bags": {},
+      "Racks & Holders": {},
+      "Wall Hooks & Hangers": {},
+      "Water & Fridge Bottles": {}
+    },
+    "Umbrella & Rainwear": {
+      "Rainwear & Accessories": {},
+      "Umbrella": {}
+    }
+  },
+  "Eggs, Meat & Fish": {
+    "Eggs": {
+      "Country Eggs": {},
+      "Farm Eggs": {},
+      "Other Eggs": {},
+      "Protein Eggs": {}
+    },
+    "Fish & Seafood": {
+      "Canned Seafood": {},
+      "Dry Fish": {},
+      "Fresh Water Fish": {},
+      "Frozen Fish & Seafood": {},
+      "Marine Water Fish": {},
+      "Other Seafood": {},
+      "Prawns & Shrimps": {}
+    },
+    "Marinades": {
+      "Marinated Meat": {}
+    },
+    "Mutton & Lamb": {
+      "Fresh Mutton": {},
+      "Frozen Mutton": {}
+    },
+    "Pork & Other Meats": {
+      "Fresh & Frozen Pork": {}
+    },
+    "Poultry": {
+      "Duck & Goose": {},
+      "Fresh Chicken": {},
+      "Frozen Chicken": {},
+      "Turkey": {}
+    },
+    "Sausages, Bacon & Salami": {
+      "Chicken Sausages": {},
+      "Lamb": {},
+      "Pork & Ham": {},
+      "Turkey & Duck": {}
+    }
+  },
+  "Gourment & World Food": {
+    "Cereals & Breakfast": {
+      "Cereal & Granola Bars": {},
+      "Gourmet Flakes": {},
+      "Imported Oats & Porridge": {},
+      "Muesli & Rice Cakes": {}
+    },
+    "Chocolates & Biscuits": {
+      "Cookies, Biscotti, Wafer": {},
+      "Crackers & Digestive": {},
+      "International Chocolates": {},
+      "Luxury Chocolates, Gifts": {},
+      "Marshmallow, Candy, Jelly": {}
+    },
+    "Dairy & Cheese": {
+      "Butter & Cream": {},
+      "Cream & Cheese Spreads": {},
+      "Flavoured & Greek Yogurt": {},
+      "Gourmet Ice Cream": {},
+      "International Cheese": {},
+      "Milk & Soya Drinks": {},
+      "Tofu": {}
+    },
+    "Cooking & Backing Needs": {
+      "Baking Accessories": {},
+      "Baking, Cake Decorations": {},
+      "Cooking Chocolate, Cocoa": {},
+      "Curry Paste, Coconut Milk": {},
+      "Exotic Sugar & Salt": {},
+      "Flours & Pre-Mixes": {},
+      "Herbs, Seasonings & Rubs": {},
+      "Quinoa & Grains": {}
+    },
+    "Drinks & Beverages": {
+      "Aerated, Still, Sparkling": {},
+      "Cocktail Mixes": {},
+      "Coffee & Pre-Mix": {},
+      "Gourmet Juices & Drinks": {},
+      "Gourmet Tea & Tea Bags": {},
+      "Non-Alcoholic Beer, Wine": {},
+      "Nutrition Drink & Mixes": {}
+    },
+    "Oils & Vinegar": {
+      "Balsamic & Cider Vinegar": {},
+      "Canola & Rapeseed Oil": {},
+      "Extra Virgin Olive Oil": {},
+      "Flavoured & Other Oils": {},
+      "Organic & Cold Press Oil": {},
+      "Pure, Pomace Olive Oil": {},
+      "Regular & White Vinegar": {},
+      "Wine & Rice Vinegar": {}
+    },
+    "Pasta, Soup & Noodles": {
+      "Imported Noodles": {},
+      "Imported Soups": {},
+      "Jasmine & Sushi Rice": {},
+      "Pastas & Spaghetti": {}
+    },
+    "Sauces, Spreads & Dips": {
+      "Chocolate, Peanut Spread": {},
+      "Honey & Maple Syrup": {},
+      "Hummus, Cheese, Salsa Dip": {},
+      "Jams, Marmalade, Spreads": {},
+      "Mustard & Cheese Sauces": {},
+      "Salad Dressings": {},
+      "Thai & Asian Sauces": {}
+    },
+    "Snacks, Dry Fruits, Nuts": {
+      "Dry Fruits & Berries": {},
+      "Gourmet Popcorn": {},
+      "Healthy, Baked Snacks": {},
+      "Nachos & Chips": {},
+      "Roasted Seeds & Nuts": {},
+      "Trail & Cocktail Mixes": {}
+    },
+    "Tinned & Processed Food": {
+      "Dry Fruits & Berries": {},
+      "Gourmet Popcorn": {},
+      "Healthy, Baked Snacks": {},
+      "Nachos & Chips": {},
+      "Roasted Seeds & Nuts": {},
+      "Trail & Cocktail Mixes": {}
+    }
+  },
+  "Baby Care": {
+    "Baby Accessories": {
+      "Baby Gear & Outdoor": {},
+      "Baby Toys": {},
+      "Combs, Brushes, Clippers": {},
+      "Other Baby Accessories": {},
+      "Soothers & Teethers": {}
+    },
+    "Baby Bath & Hygiene": {
+      "Baby Bath": {},
+      "Baby Buds": {},
+      "Baby Creams & Lotions": {},
+      "Baby Gift Sets": {},
+      "Baby Health": {},
+      "Baby Laundry": {},
+      "Baby Oil & Shampoo": {},
+      "Baby Oral Care": {},
+      "Baby Powder": {}
+    },
+    "Baby Food & Formula": {
+      "Baby Food": {},
+      "Infant Formula": {},
+      "Lactose Free Baby Food & Formula": {},
+      "Organic Baby Food": {}
+    },
+    "Diapers & Wipes": {
+      "Baby Wipes": {},
+      "Diapers": {},
+      "Nappies & Rash Cream": {}
+    },
+    "Feeding & Nursing": {
+      "Baby Dishes & Utensils": {},
+      "Bibs & Napkins": {},
+      "Nursing Tools": {},
+      "Sippers & Bottles": {}
+    },
+    "Mothers & Maternity": {
+      "Maternity Health Supplements": {},
+      "Maternity Personal Care": {}
+    }
+  },
+  "Paan Corner": {
+    "Smoking Supplies": {
+      "Hookah Needs": {},
+      "Quit Smoking Alternatives": {},
+      "Smoking Accessories": {}
+    }
+  },
+  "Food Court": {
+    "Biryani & Rice Delights": {
+      "Biryani": {},
+      "Rice": {}
+    },
+    "Breakfast": {
+      "English Breakfast": {},
+      "Poha": {},
+      "Upma": {}
+    },
+    "Burgers & Sandwiches": {
+      "Burgers": {},
+      "Sandwiches & Subs": {}
+    },
+    "Cack & Pastry Delights": {
+      "Brownie": {},
+      "Cacks": {},
+      "Pastrues": {},
+      "Muffins": {},
+      "Pudding": {},
+      "Mousse": {}
+    },
+    "Cold Beverages": {
+      "Cold Coffee": {},
+      "Iced Tea": {},
+      "Sharbats": {},
+      "Lemonades": {},
+      "Shikanji": {},
+      "Coolers": {},
+      "Smoothies": {},
+      "Shakes": {}
+    },
+    "Hot Beverages": {
+      "Hot Coffee": {},
+      "Hot Tea": {},
+      "Instant Milk Drinks": {}
+    },
+    "Meal Bowls": {
+      "Non-Veg Bowls": {},
+      "Veg Bowls": {}
+    },
+    "Pizza & Pasta": {
+      "pizza": {},
+      "Pasta": {}
+    },
+    "Rolls": {
+      "Non-Veg Rolls": {},
+      "Veg Rolls": {}
+    },
+    "Snack Time": {
+      "Desi Naashta": {},
+      "Finger Food": {}
+    }
+  },
+  "Pharma-L1": {
+    "Pharma-L2": {
+      "Pharma-L3": {}
+    }
+  },
+  "Pharmacy & Wellness": {
+    "OTC Medicine & Devices": {
+      "Adult Nutrition": {},
+      "Assorted Devices": {},
+      "Ayurveda Dermatology Meds": {},
+      "Baby Food Variety": {},
+      "Bath & Body Care": {},
+      "Bone & Muscle Care": {},
+      "Calcium Supplements": {},
+      "Cardiac Care": {},
+      "Child Care": {},
+      "Cough & Cold": {},
+      "Daily Living Aid": {},
+      "Diabetes Care": {},
+      "Diabetes Care Device": {},
+      "Dietery Supplements": {},
+      "Elderly Care": {},
+      "Eneregy Foods": {},
+      "Family Care": {},
+      "Green Tea & More": {},
+      "Hair & Skin Supplements": {},
+      "Hair Health": {},
+      "Healthy Snacking": {},
+      "Healthy Cereal Product": {},
+      "Kidney & Gut Health": {},
+      "Kids Nutrition": {},
+      "Men's Care": {},
+      "Mind Care": {},
+      "Mobility Aids": {},
+      "Mother & Baby Food": {},
+      "Multivitamins": {},
+      "Muscle & Joint Health": {},
+      "Nutritional Drink": {},
+      "Nuts & Cereals": {},
+      "Omega & Fish Oil": {},
+      "Oral Hygiene": {},
+      "Other Ayurvedics": {},
+      "Other Personal Care": {},
+      "Other Supplements": {},
+      "Other Vitamins": {},
+      "Personal Care": {},
+      "Pet Care": {},
+      "Pharma Dummy": {},
+      "Protein Supplements": {},
+      "Rehydration Beverages": {},
+      "Respiratory Care": {},
+      "Self-Care Assortment": {},
+      "Sexual Care": {},
+      "Sexual Health": {},
+      "Single Vitamin & Mineral": {},
+      "Skin Care Routine": {},
+      "Specialty Supplements": {},
+      "Stomach & Liver Care": {},
+      "Support & Braces": {},
+      "Surgicals": {},
+      "Sweeteners": {},
+      "Tea & Other Beverages": {},
+      "Thereapeutic Nutrition": {},
+      "Unani": {},
+      "Weight Management": {},
+      "Women's Care": {}
+    },
+    "OTX Medicine": {
+      "Assorted OTX Meds": {},
+      "Brain Meds": {},
+      "Nerve Meds": {},
+      "Cardiac Meds": {},
+      "Derma Hair Meds": {},
+      "Eye & Ear Care Meds": {},
+      "Gastro Meds": {},
+      "Other Gynae Meds": {},
+      "Other OTX Meds": {},
+      "OTX Blood Health Meds": {},
+      "OTX Dematology Meds": {},
+      "Painkillers": {},
+      "Respiratory Meds": {}
+    },
+    "RX Medicine": {
+      "Anti Diabetic Meds": {},
+      "Antimicrobials": {},
+      "Assorted Meds": {},
+      "Blood Health Meds": {},
+      "Ear Care Meds": {},
+      "Eye Care Meds": {},
+      "Gastro Intestinal": {},
+      "Gynaecological": {},
+      "Pain Relief Drugs": {},
+      "RX Brain & Nerve Meds": {},
+      "RX Cardiac Meds": {},
+      "RX Dermatology Meds": {},
+      "RX Eye & Ear Care Meds": {},
+      "RX Respiratory Meds": {},
+      "Sexual Stamina Booster": {},
+      "Urology Health Meds": {},
+      "Vitamins & Minerals": {}
+    }
+  },
+  "Financial & Legal Services": {
+    "Accounting & Bookkeeping": {
+      "Bookkeeping Services": {
+        "Day-to-Day Accounting": {},
+        "Ledger Maintenance": {},
+        "Accounts Reconciliation": {}
+      },
+      "Financial Accounting": {
+        "Profit & Loss Statements": {},
+        "Balance Sheets": {},
+        "Cash Flow Statements": {}
+      },
+      "Payroll Management": {
+        "Salary Processing": {},
+        "Payslip Generation": {},
+        "Statutory Compliance": {}
+      },
+      "Accounts Payable & Receivable": {
+        "Invoice Management": {},
+        "Payment Tracking": {},
+        "Vendor Reconciliation": {}
+      },
+      "Accounting Software Services": {
+        "Tally Services": {},
+        "QuickBooks Services": {},
+        "Zoho Books Services": {}
+      }
+    },
+    "Tax Filing & GST Services": {
+      "Direct Tax Services": {
+        "Income Tax Filing": {
+          "Individual Returns": {},
+          "Business Returns": {}
+        },
+        "Tax Planning": {},
+        "Advance Tax Calculation": {}
+      },
+      "Indirect Tax Services": {
+        "GST Registration": {},
+        "GST Return Filing": {
+          "GSTR-1": {},
+          "GSTR-3B": {},
+          "Annual Returns": {}
+        },
+        "GST Compliance & Audit": {}
+      },
+      "International Taxation": {
+        "Transfer Pricing": {},
+        "Cross-Border Tax Advisory": {}
+      },
+      "Tax Notices & Litigation Support": {
+        "Income Tax Notices": {},
+        "GST Notices": {},
+        "Appeals & Representation": {}
+      }
+    },
+    "Investment Advisory": {
+      "Personal Financial Planning": {
+        "Goal-Based Planning": {},
+        "Retirement Planning": {},
+        "Wealth Management": {}
+      },
+      "Investment Products Advisory": {
+        "Mutual Funds": {},
+        "Stocks & Equity": {},
+        "Bonds & Fixed Income": {},
+        "ETFs": {},
+        "Alternative Investments": {}
+      },
+      "Portfolio Management": {
+        "Asset Allocation": {},
+        "Risk Profiling": {},
+        "Portfolio Review & Rebalancing": {}
+      },
+      "Corporate Advisory": {
+        "Treasury Management": {},
+        "Investment Structuring": {}
+      },
+      "Research & Reporting": {
+        "Market Research": {},
+        "Performance Reports": {}
+      }
+    },
+    "Legal Consultation": {
+      "Corporate Legal Services": {
+        "Company Incorporation": {},
+        "Contract Drafting & Review": {},
+        "Compliance Advisory": {}
+      },
+      "Business & Commercial Law": {
+        "Intellectual Property Law": {},
+        "Employment & Labor Law": {},
+        "Mergers & Acquisitions": {}
+      },
+      "Civil & Criminal Law": {
+        "Civil Disputes": {},
+        "Criminal Defense": {}
+      },
+      "Family & Personal Law": {
+        "Divorce & Family Matters": {},
+        "Property & Inheritance Law": {}
+      },
+      "Legal Processes": {
+        "Legal Documentation": {},
+        "Legal Notices": {},
+        "Court Representation": {}
+      },
+      "Consultation Modes": {
+        "Online Legal Consultation": {},
+        "In-Person Consultation": {}
+      }
+    },
+    "Insurance Services": {
+      "Insurance Advisory": {
+        "Insurance Need Analysis": {},
+        "Policy Comparison": {}
+      },
+      "Life Insurance": {
+        "Term Insurance": {},
+        "Endowment Plans": {},
+        "ULIPs": {}
+      },
+      "Health Insurance": {
+        "Individual Health Insurance": {},
+        "Family Floater Plans": {},
+        "Senior Citizen Health Insurance": {}
+      },
+      "General Insurance": {
+        "Motor Insurance": {},
+        "Home Insurance": {},
+        "Travel Insurance": {},
+        "Business Insurance": {}
+      },
+      "Claims Assistance": {
+        "Claim Filing Support": {},
+        "Claim Documentation": {},
+        "Settlement Support": {}
+      }
+    }
+  },
+  "Healthcare & Wellness Services": {
+    "Online Consultations": {
+      "General Physician Consultation": {
+        "Acute Illness Consultation": {},
+        "Chronic Disease Management": {},
+        "Second Opinion Services": {}
+      },
+      "Specialist Consultations": {
+        "Cardiologist": {},
+        "Dermatologist": {},
+        "Gynecologist": {},
+        "Pediatrician": {},
+        "Orthopedic Specialist": {},
+        "Neurologist": {}
+      },
+      "Telemedicine Services": {
+        "Video Consultations": {},
+        "Audio Consultations": {},
+        "Chat-Based Consultations": {}
+      },
+      "E-Prescriptions & Follow-ups": {
+        "Digital Prescriptions": {},
+        "Follow-up Consultations": {},
+        "Medication Reviews": {}
+      }
+    },
+    "Diagnostics & Lab Services": {
+      "Pathology Tests": {
+        "Blood Tests": {
+          "Complete Blood Count (CBC)": {},
+          "Blood Sugar Tests": {},
+          "Lipid Profile": {}
+        },
+        "Urine Tests": {},
+        "Stool Tests": {},
+        "Biopsy & Histopathology": {}
+      },
+      "Imaging & Radiology": {
+        "X-Ray": {},
+        "Ultrasound": {},
+        "CT Scan": {},
+        "MRI Scan": {},
+        "ECG & Echo": {}
+      },
+      "Preventive Health Checkups": {
+        "Full Body Checkup": {},
+        "Diabetes Checkup": {},
+        "Heart Health Packages": {},
+        "Women Health Packages": {},
+        "Senior Citizen Health Packages": {}
+      },
+      "Home Sample Collection": {
+        "Blood Sample Collection": {},
+        "Swab Collection": {},
+        "Report Home Delivery": {}
+      }
+    },
+    "Fitness Coaching": {
+      "Personal Fitness Training": {
+        "Weight Loss Programs": {},
+        "Muscle Building Programs": {},
+        "Strength & Conditioning": {}
+      },
+      "Group Fitness Programs": {
+        "Online Fitness Classes": {},
+        "Bootcamps": {},
+        "Corporate Fitness Programs": {}
+      },
+      "Specialized Fitness": {
+        "Yoga Training": {},
+        "Pilates Training": {},
+        "Functional Fitness": {}
+      },
+      "Nutrition & Diet Coaching": {
+        "Diet Planning": {},
+        "Meal Planning": {},
+        "Supplement Guidance": {}
+      },
+      "Progress Tracking": {
+        "Fitness Assessments": {},
+        "Body Composition Analysis": {},
+        "Performance Reports": {}
+      }
+    },
+    "Mental Health Counseling": {
+      "Psychological Counseling": {
+        "Stress Management": {},
+        "Anxiety Counseling": {},
+        "Depression Counseling": {}
+      },
+      "Therapy Services": {
+        "Cognitive Behavioral Therapy (CBT)": {},
+        "Behavioral Therapy": {},
+        "Trauma Therapy": {}
+      },
+      "Psychiatric Services": {
+        "Psychiatric Consultation": {},
+        "Medication Management": {}
+      },
+      "Wellness Coaching": {
+        "Mindfulness Training": {},
+        "Emotional Wellbeing Programs": {}
+      },
+      "Counseling Formats": {
+        "One-on-One Sessions": {},
+        "Group Therapy": {},
+        "Online Counseling": {},
+        "In-Person Counseling": {}
+      }
+    },
+    "Home Healthcare": {
+      "Medical Care at Home": {
+        "Doctor Home Visits": {},
+        "Nurse Home Visits": {},
+        "Physiotherapy at Home": {}
+      },
+      "Elderly Care": {
+        "Assisted Living Support": {},
+        "Chronic Care Management": {},
+        "Post-Hospitalization Care": {}
+      },
+      "Medical Equipment & Devices": {
+        "Oxygen Concentrators": {},
+        "Wheelchairs": {},
+        "Hospital Beds": {},
+        "Monitoring Devices": {}
+      },
+      "Rehabilitation Services": {
+        "Stroke Rehabilitation": {},
+        "Orthopedic Rehabilitation": {},
+        "Cardiac Rehabilitation": {}
+      },
+      "Palliative & End-of-Life Care": {
+        "Pain Management": {},
+        "Comfort Care": {},
+        "Family Support Services": {}
+      }
+    }
+  },
+  "Creative & Media Services": {
+    "Video Production": {
+      "Pre-Production": {
+        "Concept Development": {},
+        "Scriptwriting": {},
+        "Storyboarding": {},
+        "Shot Planning": {},
+        "Location Scouting": {}
+      },
+      "Production": {
+        "Corporate Videos": {},
+        "Promotional & Brand Videos": {},
+        "Social Media Videos": {},
+        "Explainer Videos": {},
+        "Product Demo Videos": {},
+        "Event Coverage": {}
+      },
+      "Post-Production": {
+        "Video Editing": {},
+        "Color Grading": {},
+        "Motion Graphics": {},
+        "Subtitles & Captions": {},
+        "Sound Design": {}
+      },
+      "Video Formats": {
+        "Short-Form Videos": {},
+        "Long-Form Videos": {},
+        "Reels & Shorts": {},
+        "Ads & Commercials": {}
+      },
+      "Distribution Support": {
+        "Platform Optimization": {},
+        "YouTube Publishing": {},
+        "Ad-Ready Video Formatting": {}
+      }
+    },
+    "Photography": {
+      "Commercial Photography": {
+        "Product Photography": {},
+        "Food Photography": {},
+        "Fashion Photography": {},
+        "Architecture & Interior Photography": {}
+      },
+      "Corporate Photography": {
+        "Corporate Portraits": {},
+        "Team & Office Shoots": {},
+        "Employer Branding Shoots": {}
+      },
+      "Event Photography": {
+        "Conferences": {},
+        "Weddings": {},
+        "Corporate Events": {}
+      },
+      "Creative Photography": {
+        "Lifestyle Photography": {},
+        "Conceptual Photography": {},
+        "Editorial Photography": {}
+      },
+      "Post-Processing": {
+        "Photo Editing": {},
+        "Retouching": {},
+        "Color Correction": {}
+      },
+      "Delivery Formats": {
+        "Web-Optimized Images": {},
+        "Print-Ready Images": {}
+      }
+    },
+    "Animation & VFX": {
+      "Animation Services": {
+        "2D Animation": {},
+        "3D Animation": {},
+        "Whiteboard Animation": {},
+        "Motion Graphics": {}
+      },
+      "VFX Services": {
+        "Visual Effects": {},
+        "Green Screen Compositing": {},
+        "CGI Integration": {},
+        "Matte Painting": {}
+      },
+      "Explainer & Educational Animation": {
+        "Product Explainers": {},
+        "Process Explainers": {},
+        "Training Videos": {}
+      },
+      "Media Types": {
+        "Ads & Commercials": {},
+        "Films & Short Movies": {},
+        "OTT & Digital Content": {}
+      },
+      "Production Pipeline": {
+        "Concept & Design": {},
+        "Modeling & Rigging": {},
+        "Animation": {},
+        "Rendering": {},
+        "Post-Production": {}
+      }
+    },
+    "Content Writing": {
+      "Marketing Content": {
+        "Website Content": {},
+        "Landing Page Copy": {},
+        "Ad Copywriting": {},
+        "Brochure Content": {}
+      },
+      "SEO Content": {
+        "Blog Writing": {},
+        "Article Writing": {},
+        "Keyword-Optimized Content": {}
+      },
+      "Technical & Business Writing": {
+        "Technical Documentation": {},
+        "Whitepapers": {},
+        "Case Studies": {}
+      },
+      "Creative Writing": {
+        "Story Writing": {},
+        "Script Writing": {},
+        "Brand Storytelling": {}
+      },
+      "Content Management": {
+        "Content Strategy": {},
+        "Content Calendar": {},
+        "Editing & Proofreading": {}
+      }
+    },
+    "Music & Audio Services": {
+      "Music Production": {
+        "Original Music Composition": {},
+        "Background Scores": {},
+        "Jingles": {}
+      },
+      "Audio Recording": {
+        "Voice-over Recording": {},
+        "Podcast Recording": {},
+        "Audiobook Recording": {}
+      },
+      "Sound Design": {
+        "Sound Effects": {},
+        "Foley Art": {},
+        "Audio Mixing": {},
+        "Audio Mastering": {}
+      },
+      "Voice-Over Services": {
+        "Commercial Voice-Over": {},
+        "Explainer Video Voice-Over": {},
+        "IVR & Corporate Voice-Over": {},
+        "Multilingual Voice-Over": {}
+      },
+      "Audio Formats & Delivery": {
+        "WAV / MP3 Files": {},
+        "Broadcast-Ready Audio": {},
+        "Streaming Platform Audio": {}
+      }
+    }
+  },
+  "Business & Enterprise Services": {
+    "HR & Recruitment": {
+      "Talent Acquisition": {
+        "Permanent Hiring": {},
+        "Contract Staffing": {},
+        "Temporary Staffing": {},
+        "Executive Search": {}
+      },
+      "Recruitment Process": {
+        "Job Description Creation": {},
+        "Candidate Sourcing": {},
+        "Screening & Shortlisting": {},
+        "Interview Coordination": {},
+        "Offer Management": {}
+      },
+      "HR Operations": {
+        "Employee Onboarding": {},
+        "Attendance & Leave Management": {},
+        "Payroll Coordination": {},
+        "HR Documentation": {}
+      },
+      "Performance & Engagement": {
+        "Performance Management Systems": {},
+        "Employee Engagement Programs": {},
+        "Learning & Development": {}
+      },
+      "Compliance & Policies": {
+        "Labor Law Compliance": {},
+        "HR Policy Design": {},
+        "POSH Compliance": {}
+      }
+    },
+    "CRM & ERP Solutions": {
+      "CRM Solutions": {
+        "Sales CRM": {},
+        "Customer Support CRM": {},
+        "Marketing Automation CRM": {},
+        "Lead Management": {},
+        "Customer Analytics": {}
+      },
+      "ERP Solutions": {
+        "Finance & Accounting ERP": {},
+        "HR & Payroll ERP": {},
+        "Inventory Management ERP": {},
+        "Procurement & Supply Chain ERP": {}
+      },
+      "ERP / CRM Implementation": {
+        "Requirement Analysis": {},
+        "System Configuration": {},
+        "Custom Development": {},
+        "Data Migration": {},
+        "User Training": {}
+      },
+      "Integration & Customization": {
+        "API Integrations": {},
+        "Third-Party Integrations": {},
+        "Workflow Customization": {}
+      },
+      "Support & Maintenance": {
+        "System Monitoring": {},
+        "Upgrades & Enhancements": {},
+        "Technical Support": {}
+      }
+    },
+    "Business Consulting": {
+      "Strategy Consulting": {
+        "Business Strategy": {},
+        "Growth Strategy": {},
+        "Market Entry Strategy": {}
+      },
+      "Management Consulting": {
+        "Organizational Restructuring": {},
+        "Change Management": {},
+        "Performance Improvement": {}
+      },
+      "Financial Consulting": {
+        "Cost Optimization": {},
+        "Financial Modeling": {},
+        "Budgeting & Forecasting": {}
+      },
+      "IT & Digital Consulting": {
+        "Digital Transformation": {},
+        "IT Roadmap Planning": {},
+        "Technology Advisory": {}
+      },
+      "Startup Consulting": {
+        "Business Model Design": {},
+        "Go-To-Market Strategy": {},
+        "Fundraising Advisory": {}
+      }
+    },
+    "Market Research": {
+      "Research Design": {
+        "Qualitative Research": {},
+        "Quantitative Research": {}
+      },
+      "Data Collection": {
+        "Surveys": {},
+        "Interviews": {},
+        "Focus Groups": {},
+        "Secondary Research": {}
+      },
+      "Industry & Market Analysis": {
+        "Market Size Estimation": {},
+        "Competitive Analysis": {},
+        "Trend Analysis": {}
+      },
+      "Customer Research": {
+        "Customer Segmentation": {},
+        "Customer Satisfaction Studies": {},
+        "Buyer Persona Development": {}
+      },
+      "Reporting & Insights": {
+        "Research Reports": {},
+        "Dashboards": {},
+        "Strategic Recommendations": {}
+      }
+    },
+    "Process Automation": {
+      "Business Process Automation": {
+        "Workflow Automation": {},
+        "Document Automation": {},
+        "Approval Automation": {}
+      },
+      "Robotic Process Automation (RPA)": {
+        "Rule-Based Automation": {},
+        "Bot Development": {},
+        "Bot Monitoring": {}
+      },
+      "Intelligent Automation": {
+        "AI-Driven Automation": {},
+        "OCR & Document Processing": {},
+        "NLP-Based Automation": {}
+      },
+      "Automation Tools & Platforms": {
+        "Low-Code / No-Code Platforms": {},
+        "RPA Tools": {},
+        "Integration Platforms": {}
+      },
+      "Automation Lifecycle": {
+        "Process Assessment": {},
+        "Automation Design": {},
+        "Implementation": {},
+        "Monitoring & Optimization": {}
+      }
+    }
+  },
+  "Logistics & On-Demand Services": {
+    "Delivery & Courier Services": {
+      "Local Delivery": {
+        "Same-Day Delivery": {},
+        "Express Delivery": {},
+        "Hyperlocal Delivery": {}
+      },
+      "Domestic Courier": {
+        "Document Delivery": {},
+        "Parcel Delivery": {},
+        "Bulk Shipments": {}
+      },
+      "International Courier": {
+        "Air Freight Courier": {},
+        "Customs Clearance": {},
+        "Door-to-Door Delivery": {}
+      },
+      "Specialized Delivery": {
+        "Food Delivery": {},
+        "Grocery Delivery": {},
+        "Medicine Delivery": {},
+        "E-commerce Last-Mile Delivery": {}
+      },
+      "Value-Added Services": {
+        "Cash on Delivery (COD)": {},
+        "Reverse Logistics": {},
+        "Order Tracking": {},
+        "Proof of Delivery": {}
+      }
+    },
+    "Warehousing": {
+      "Storage Solutions": {
+        "Short-Term Storage": {},
+        "Long-Term Storage": {},
+        "Climate-Controlled Storage": {}
+      },
+      "Fulfillment Services": {
+        "Order Picking & Packing": {},
+        "Inventory Management": {},
+        "Labeling & Packaging": {}
+      },
+      "Warehouse Types": {
+        "Distribution Centers": {},
+        "Fulfillment Centers": {},
+        "Cold Storage Warehouses": {},
+        "Bonded Warehouses": {}
+      },
+      "Technology & Automation": {
+        "Warehouse Management Systems (WMS)": {},
+        "Barcode & RFID Systems": {},
+        "Automated Sorting": {}
+      },
+      "Value-Added Warehouse Services": {
+        "Kitting & Assembly": {},
+        "Quality Inspection": {},
+        "Returns Handling": {}
+      }
+    },
+    "Supply Chain Management": {
+      "Supply Chain Planning": {
+        "Demand Forecasting": {},
+        "Inventory Planning": {},
+        "Capacity Planning": {}
+      },
+      "Procurement & Sourcing": {
+        "Vendor Management": {},
+        "Purchase Order Management": {},
+        "Contract Management": {}
+      },
+      "Logistics Management": {
+        "Transportation Planning": {},
+        "Route Optimization": {},
+        "Freight Management": {}
+      },
+      "Supply Chain Execution": {
+        "Order Management": {},
+        "Distribution Management": {},
+        "Returns Management": {}
+      },
+      "Supply Chain Analytics": {
+        "Performance Dashboards": {},
+        "Cost Optimization": {},
+        "Risk & Disruption Management": {}
+      }
+    },
+    "Ride-hailing & Transport": {
+      "Passenger Transport": {
+        "Cab Services": {},
+        "Bike Taxi Services": {},
+        "Auto-Rickshaw Services": {},
+        "Ride Pooling": {}
+      },
+      "Commercial Transport": {
+        "Truck Aggregation": {},
+        "Mini-Truck Services": {},
+        "Intercity Transport": {}
+      },
+      "Specialized Transport": {
+        "Ambulance Services": {},
+        "School Transport": {},
+        "Corporate Transport": {}
+      },
+      "Fleet Management": {
+        "Vehicle Tracking": {},
+        "Driver Management": {},
+        "Fuel Management": {},
+        "Maintenance Scheduling": {}
+      },
+      "Pricing & Payments": {
+        "Dynamic Pricing": {},
+        "Digital Payments": {},
+        "Invoicing & Billing": {}
+      }
+    },
+    "Home Services": {
+      "Cleaning Services": {
+        "Home Cleaning": {},
+        "Deep Cleaning": {},
+        "Sofa & Carpet Cleaning": {},
+        "Kitchen & Bathroom Cleaning": {}
+      },
+      "Repair & Maintenance": {
+        "Electrical Repairs": {},
+        "Plumbing Services": {},
+        "Appliance Repair": {},
+        "HVAC Services": {}
+      },
+      "Installation Services": {
+        "AC Installation": {},
+        "RO & Water Purifier Installation": {},
+        "Furniture Assembly": {}
+      },
+      "Beauty & Personal Care at Home": {
+        "Salon Services": {},
+        "Spa Services": {},
+        "Grooming Services": {}
+      },
+      "Home Improvement": {
+        "Painting Services": {},
+        "Pest Control": {},
+        "Waterproofing": {}
+      },
+      "Service Management": {
+        "Service Booking": {},
+        "Background-Verified Professionals": {},
+        "Service Warranty &": {}
+      }
+    }
+  },
+  "8. Automobile & Industrial Products": {
+    "8.1 Automobile Products": {
+      "Vehicle Accessories": {
+        "Interior Accessories": {
+          "Seat Covers": {},
+          "Floor Mats": {},
+          "Steering Wheel Covers": {},
+          "Sun Shades": {},
+          "Dashboard Covers": {},
+          "Car Organizers": {}
+        },
+        "Exterior Accessories": {
+          "Car Covers": {},
+          "Bike Covers": {},
+          "Mud Flaps": {},
+          "Door Guards": {},
+          "Chrome Garnish": {},
+          "Roof Rails": {}
+        },
+        "Electronics & Gadgets": {
+          "Car Chargers": {},
+          "Dash Cameras": {},
+          "Reverse Parking Sensors": {},
+          "GPS Navigation Systems": {},
+          "Music Systems & Speakers": {}
+        },
+        "Convenience & Utility": {
+          "Air Fresheners": {},
+          "Mobile Holders": {},
+          "Tyre Inflators": {},
+          "Jump Starters": {}
+        }
+      },
+      "Spare Parts": {
+        "Engine Components": {
+          "Pistons": {},
+          "Cylinders": {},
+          "Spark Plugs": {},
+          "Fuel Injectors": {},
+          "Timing Belts & Chains": {}
+        },
+        "Electrical Parts": {
+          "Batteries": {},
+          "Alternators": {},
+          "Starter Motors": {},
+          "Fuses & Relays": {},
+          "Wiring Harnesses": {}
+        },
+        "Brake System": {
+          "Brake Pads": {},
+          "Brake Shoes": {},
+          "Brake Discs": {},
+          "Brake Calipers": {}
+        },
+        "Suspension & Steering": {
+          "Shock Absorbers": {},
+          "Struts": {},
+          "Control Arms": {},
+          "Steering Racks": {}
+        },
+        "Transmission Parts": {
+          "Clutch Plates": {},
+          "Gearboxes": {},
+          "Drive Shafts": {},
+          "CV Joints": {}
+        },
+        "Filters & Fluids": {
+          "Oil Filters": {},
+          "Air Filters": {},
+          "Fuel Filters": {},
+          "Engine Oils": {},
+          "Coolants": {},
+          "Brake Fluids": {}
+        }
+      }
+    },
+    "8.2 Industrial Products": {
+      "Tools & Machinery": {
+        "Hand Tools": {
+          "Screwdrivers": {},
+          "Spanners & Wrenches": {},
+          "Pliers": {},
+          "Hammers": {},
+          "Chisels": {}
+        },
+        "Power Tools": {
+          "Drilling Machines": {},
+          "Angle Grinders": {},
+          "Cutters": {},
+          "Sanders": {},
+          "Heat Guns": {}
+        },
+        "Industrial Machinery": {
+          "CNC Machines": {},
+          "Lathe Machines": {},
+          "Milling Machines": {},
+          "Hydraulic Presses": {}
+        },
+        "Measuring Instruments": {
+          "Vernier Calipers": {},
+          "Micrometers": {},
+          "Measuring Tapes": {},
+          "Pressure Gauges": {},
+          "Multimeters": {}
+        }
+      },
+      "Safety Equipment": {
+        "Personal Protective Equipment (PPE)": {
+          "Safety Helmets": {},
+          "Safety Gloves": {},
+          "Safety Shoes": {},
+          "Face Shields": {},
+          "Ear Protection": {}
+        },
+        "Fire Safety": {
+          "Fire Extinguishers": {},
+          "Fire Blankets": {},
+          "Smoke Detectors": {},
+          "Fire Alarms": {}
+        },
+        "Workplace Safety": {
+          "Safety Signages": {},
+          "Reflective Jackets": {},
+          "Safety Harnesses": {},
+          "Barricades & Cones": {}
+        },
+        "Electrical Safety": {
+          "Insulated Tools": {},
+          "Voltage Detectors": {},
+          "Rubber Mats": {}
+        }
+      }
+    }
+  },
+  "Education & Training": {
+    "Online Courses": {
+      "Academic Courses": {
+        "School-Level Courses": {
+          "Primary Education": {},
+          "Secondary Education": {},
+          "Senior Secondary Education": {}
+        },
+        "College-Level Courses": {
+          "Engineering Subjects": {},
+          "Medical Subjects": {},
+          "Commerce Subjects": {},
+          "Arts & Humanities": {}
+        }
+      },
+      "Professional Courses": {
+        "IT & Software Courses": {
+          "Programming Languages": {},
+          "Web Development": {},
+          "Data Science & AI": {},
+          "Cloud Computing": {}
+        },
+        "Business & Management": {
+          "MBA Foundations": {},
+          "Project Management": {},
+          "Finance & Accounting": {},
+          "Marketing & Sales": {}
+        }
+      },
+      "Learning Formats": {
+        "Self-Paced Courses": {},
+        "Instructor-Led Courses": {},
+        "Live Online Classes": {},
+        "Recorded Video Courses": {}
+      },
+      "Course Support": {
+        "Assignments & Projects": {},
+        "Assessments & Quizzes": {},
+        "Discussion Forums": {},
+        "Doubt-Solving Sessions": {}
+      }
+    },
+    "Corporate Training": {
+      "Employee Skill Training": {
+        "Technical Training": {},
+        "Soft Skills Training": {},
+        "Leadership Development": {}
+      },
+      "Functional Training": {
+        "Sales Training": {},
+        "Customer Service Training": {},
+        "HR Training": {},
+        "Finance Training": {}
+      },
+      "Delivery Modes": {
+        "Onsite Training": {},
+        "Virtual Training": {},
+        "Hybrid Training": {}
+      },
+      "Organizational Development": {
+        "Team Building Programs": {},
+        "Change Management": {},
+        "Performance Improvement": {}
+      },
+      "Training Evaluation": {
+        "Skill Assessment": {},
+        "Feedback & Reporting": {},
+        "ROI Measurement": {}
+      }
+    },
+    "Skill Development Programs": {
+      "Technical Skills": {
+        "Software Development Skills": {},
+        "Data Analytics Skills": {},
+        "Cybersecurity Skills": {},
+        "Automation & DevOps Skills": {}
+      },
+      "Non-Technical Skills": {
+        "Communication Skills": {},
+        "Presentation Skills": {},
+        "Time Management": {},
+        "Problem-Solving Skills": {}
+      },
+      "Vocational Skills": {
+        "Electrical & Electronics": {},
+        "Mechanical Skills": {},
+        "Plumbing & Maintenance": {},
+        "Hospitality Skills": {}
+      },
+      "Industry-Oriented Programs": {
+        "Job-Ready Programs": {},
+        "Internship Programs": {},
+        "Apprenticeship Programs": {}
+      },
+      "Government & CSR Programs": {
+        "Employability Training": {},
+        "Digital Literacy Programs": {}
+      }
+    },
+    "Coaching & Mentorship": {
+      "Academic Coaching": {
+        "School Tuition": {},
+        "College Coaching": {},
+        "Exam-Oriented Coaching": {}
+      },
+      "Career Coaching": {
+        "Career Guidance": {},
+        "Resume & Interview Preparation": {},
+        "Job Search Strategy": {}
+      },
+      "Professional Mentorship": {
+        "Startup Mentorship": {},
+        "Leadership Mentorship": {},
+        "Technical Mentorship": {}
+      },
+      "Personal Development Coaching": {
+        "Confidence Building": {},
+        "Goal Setting": {},
+        "Productivity Coaching": {}
+      },
+      "Engagement Models": {
+        "One-on-One Coaching": {},
+        "Group Coaching": {},
+        "Long-Term Mentorship": {}
+      }
+    },
+    "Certification Services": {
+      "Professional Certifications": {
+        "IT Certifications": {
+          "Cloud Certifications": {},
+          "Cybersecurity Certifications": {},
+          "Data Science Certifications": {}
+        },
+        "Management Certifications": {
+          "PMP": {},
+          "Agile & Scrum": {},
+          "Six Sigma": {}
+        }
+      },
+      "Academic Certifications": {
+        "Diploma Programs": {},
+        "Advanced Certificates": {}
+      },
+      "International Certifications": {
+        "Language Proficiency Certifications": {},
+        "Global Skill Certifications": {}
+      },
+      "Certification Process": {
+        "Training Alignment": {},
+        "Exam Preparation": {},
+        "Exam Registration": {},
+        "Certification Issuance": {}
+      },
+      "Post-Certification Support": {
+        "Credential Verification": {},
+        "Career Mapping": {},
+        "Skill Upgradation Paths": {}
+      }
+    }
+  },
+  "Digital & Marketing Services": {
+    "SEO & Content Marketing": {
+      "Search Engine Optimization (SEO)": {
+        "On-Page SEO": {
+          "Keyword Research": {},
+          "Content Optimization": {},
+          "Meta Tags Optimization": {},
+          "URL Structure Optimization": {},
+          "Internal Linking": {}
+        },
+        "Off-Page SEO": {
+          "Backlink Building": {},
+          "Guest Posting": {},
+          "Digital PR": {},
+          "Directory Submissions": {}
+        },
+        "Technical SEO": {
+          "Website Audit": {},
+          "Page Speed Optimization": {},
+          "Mobile Optimization": {},
+          "Schema Markup": {},
+          "Crawl & Indexing Fixes": {}
+        },
+        "Local SEO": {
+          "Google Business Profile Optimization": {},
+          "Local Citations": {},
+          "Reviews Management": {},
+          "Map Pack Ranking": {}
+        }
+      },
+      "Content Marketing": {
+        "Content Strategy": {},
+        "Blog Writing": {},
+        "Website Content": {},
+        "Landing Page Content": {},
+        "Copywriting": {},
+        "Email Content": {},
+        "Content Distribution": {},
+        "Content Performance Tracking": {}
+      }
+    },
+    "Social Media Management": {
+      "Social Media Strategy": {
+        "Platform Selection": {},
+        "Content Planning": {},
+        "Posting Calendar": {},
+        "Audience Targeting": {}
+      },
+      "Content Creation": {
+        "Posts & Creatives": {},
+        "Reels & Short Videos": {},
+        "Stories": {},
+        "Infographics": {}
+      },
+      "Platform Management": {
+        "Facebook": {},
+        "Instagram": {},
+        "LinkedIn": {},
+        "Twitter (X)": {},
+        "YouTube": {}
+      },
+      "Community Management": {
+        "Comment & Message Handling": {},
+        "Reputation Management": {},
+        "Customer Engagement": {}
+      },
+      "Social Media Analytics": {
+        "Insights & Reports": {},
+        "Growth Tracking": {},
+        "Engagement Analysis": {}
+      }
+    },
+    "Performance Advertising": {
+      "Paid Search Advertising": {
+        "Google Ads": {},
+        "Bing Ads": {},
+        "Keyword Bidding": {},
+        "Ad Copy Creation": {}
+      },
+      "Social Media Advertising": {
+        "Facebook Ads": {},
+        "Instagram Ads": {},
+        "LinkedIn Ads": {},
+        "YouTube Ads": {}
+      },
+      "Display & Programmatic Ads": {
+        "Banner Ads": {},
+        "Retargeting Ads": {},
+        "Programmatic Buying": {}
+      },
+      "Conversion Optimization": {
+        "Landing Page Optimization": {},
+        "A/B Testing": {},
+        "Funnel Optimization": {}
+      },
+      "Campaign Analytics": {
+        "ROI Tracking": {},
+        "Cost Optimization": {},
+        "Attribution Modeling": {}
+      }
+    },
+    "Branding & UI/UX Design": {
+      "Branding Services": {
+        "Brand Strategy": {},
+        "Brand Identity": {},
+        "Logo Design": {},
+        "Color Palette": {},
+        "Typography": {},
+        "Brand Guidelines": {}
+      },
+      "UI Design": {
+        "Website UI Design": {},
+        "Mobile App UI Design": {},
+        "Dashboard Design": {}
+      },
+      "UX Design": {
+        "User Research": {},
+        "Wireframing": {},
+        "Prototyping": {},
+        "Usability Testing": {},
+        "User Journey Mapping": {}
+      },
+      "Visual Assets": {
+        "Marketing Creatives": {},
+        "Social Media Graphics": {},
+        "Ad Creatives": {},
+        "Presentation Design": {}
+      }
+    },
+    "Influencer Marketing": {
+      "Influencer Strategy": {
+        "Campaign Planning": {},
+        "Platform Selection": {},
+        "Budget Planning": {}
+      },
+      "Influencer Discovery": {
+        "Nano Influencers": {},
+        "Micro Influencers": {},
+        "Macro Influencers": {},
+        "Celebrity Influencers": {}
+      },
+      "Campaign Execution": {
+        "Product Seeding": {},
+        "Sponsored Posts": {},
+        "Video Collaborations": {},
+        "Live Sessions": {}
+      },
+      "Contract & Compliance": {
+        "Influencer Agreements": {},
+        "Disclosure Management": {}
+      },
+      "Performance Measurement": {
+        "Reach & Impressions": {},
+        "Engagement Rate": {},
+        "Conversion Tracking": {},
+        "ROI Analysis": {}
+      }
+    }
+  },
+  "6. Sports, Fitness & Outdoor": {
+    "6.1 Fitness Equipment": {
+      "Cardio Equipment": {
+        "Treadmills": {},
+        "Exercise Bikes": {
+          "Upright Bikes": {},
+          "Spin Bikes": {},
+          "Recumbent Bikes": {}
+        },
+        "Elliptical Trainers": {},
+        "Rowing Machines": {},
+        "Stepper Machines": {}
+      },
+      "Strength Training Equipment": {
+        "Dumbbells": {
+          "Fixed Dumbbells": {},
+          "Adjustable Dumbbells": {}
+        },
+        "Barbells & Weight Plates": {},
+        "Kettlebells": {},
+        "Resistance Bands": {},
+        "Weight Benches": {},
+        "Power Racks & Squat Racks": {}
+      },
+      "Bodyweight & Functional Training": {
+        "Pull-up Bars": {},
+        "Push-up Stands": {},
+        "Suspension Trainers": {},
+        "Medicine Balls": {},
+        "Battle Ropes": {}
+      },
+      "Core & Flexibility Training": {
+        "Ab Rollers": {},
+        "Stability Balls": {},
+        "Balance Boards": {},
+        "Foam Rollers": {}
+      }
+    },
+    "6.2 Sports Gear": {
+      "Cricket": {
+        "Cricket Bats": {},
+        "Cricket Balls": {
+          "Leather Balls": {},
+          "Tennis Balls": {}
+        },
+        "Batting Gloves": {},
+        "Helmets": {},
+        "Pads": {
+          "Batting Pads": {},
+          "Wicket-Keeping Pads": {}
+        },
+        "Cricket Kits": {}
+      },
+      "Football": {
+        "Footballs": {
+          "Match Footballs": {},
+          "Training Footballs": {}
+        },
+        "Goalposts & Nets": {},
+        "Shin Guards": {},
+        "Goalkeeper Gloves": {},
+        "Training Cones & Markers": {}
+      },
+      "Badminton": {
+        "Badminton Rackets": {},
+        "Shuttlecocks": {
+          "Feather Shuttlecocks": {},
+          "Nylon Shuttlecocks": {}
+        },
+        "Badminton Nets": {},
+        "Grip Tapes": {},
+        "Racket Covers & Bags": {}
+      },
+      "Other Sports": {
+        "Basketballs & Hoops": {},
+        "Volleyballs & Nets": {},
+        "Table Tennis Bats & Balls": {},
+        "Tennis Rackets & Balls": {}
+      }
+    },
+    "6.3 Outdoor & Adventure Gear": {
+      "Camping & Hiking": {
+        "Tents": {},
+        "Sleeping Bags": {},
+        "Sleeping Mats": {},
+        "Camping Chairs & Tables": {},
+        "Trekking Poles": {}
+      },
+      "Adventure Sports Gear": {
+        "Rock Climbing Harnesses": {},
+        "Helmets": {},
+        "Carabiners & Ropes": {},
+        "Paragliding Accessories": {},
+        "Surfing Accessories": {}
+      },
+      "Cycling": {
+        "Bicycles": {
+          "Mountain Bikes": {},
+          "Road Bikes": {},
+          "Hybrid Bikes": {}
+        },
+        "Cycling Helmets": {},
+        "Cycling Gloves": {},
+        "Bike Locks": {},
+        "Repair Kits": {}
+      },
+      "Outdoor Accessories": {
+        "Backpacks & Rucksacks": {},
+        "Headlamps & Flashlights": {},
+        "Water Bottles & Hydration Packs": {},
+        "GPS Devices & Compasses": {}
+      }
+    },
+    "6.4 Yoga & Meditation Products": {
+      "Yoga Equipment": {
+        "Yoga Mats": {
+          "PVC Mats": {},
+          "Rubber Mats": {},
+          "Eco-friendly Mats": {}
+        },
+        "Yoga Blocks": {},
+        "Yoga Straps & Belts": {},
+        "Yoga Wheels": {},
+        "Yoga Towels": {}
+      },
+      "Meditation Accessories": {
+        "Meditation Cushions": {},
+        "Floor Mats": {},
+        "Prayer Mats": {},
+        "Eye Masks": {}
+      },
+      "Mindfulness & Wellness": {
+        "Incense Sticks & Holders": {},
+        "Singing Bowls": {},
+        "Essential Oil Diffusers": {},
+        "Aromatherapy Oils": {}
+      }
+    },
+    "6.5 Sports Accessories & Wearables": {
+      "Sports Watches & Fitness Trackers": {},
+      "Heart Rate Monitors": {},
+      "Sports Bags & Kit Bags": {},
+      "Protective Gear": {
+        "Knee Guards": {},
+        "Elbow Guards": {},
+        "Ankle Guards": {}
+      }
+    }
+  },
+  "7. Books, Stationery & Education": {
+    "7.1 Books": {
+      "Academic Books": {
+        "School Level": {
+          "Pre-Primary": {},
+          "Primary (Class 1–5)": {},
+          "Middle School (Class 6–8)": {},
+          "Secondary (Class 9–10)": {},
+          "Senior Secondary (Class 11–12)": {}
+        },
+        "College & University": {
+          "Engineering": {},
+          "Medical": {},
+          "Science": {},
+          "Commerce": {},
+          "Arts & Humanities": {},
+          "Law": {},
+          "Management": {}
+        },
+        "Reference Books": {
+          "Dictionaries": {},
+          "Encyclopedias": {},
+          "Handbooks": {},
+          "Laboratory Manuals": {}
+        }
+      },
+      "Competitive Exam Preparation": {
+        "Government Exams": {
+          "UPSC": {},
+          "SSC": {},
+          "Banking Exams": {},
+          "Railway Exams": {},
+          "State PSC": {}
+        },
+        "Entrance Exams": {
+          "JEE": {},
+          "NEET": {},
+          "CUET": {},
+          "CAT": {},
+          "GATE": {}
+        },
+        "International Exams": {
+          "GRE": {},
+          "GMAT": {},
+          "TOEFL": {},
+          "IELTS": {}
+        },
+        "Exam Accessories": {
+          "Previous Year Question Papers": {},
+          "Mock Test Books": {},
+          "Practice Workbooks": {}
+        }
+      },
+      "Fiction Books": {
+        "Literature & Classics": {},
+        "Mystery & Thriller": {},
+        "Science Fiction": {},
+        "Fantasy": {},
+        "Romance": {},
+        "Horror": {},
+        "Young Adult": {},
+        "Graphic Novels & Comics": {}
+      },
+      "Non-Fiction Books": {
+        "Biographies & Autobiographies": {},
+        "Self-Help & Motivation": {},
+        "Business & Economics": {},
+        "History & Politics": {},
+        "Science & Technology": {},
+        "Philosophy & Psychology": {},
+        "Religion & Spirituality": {},
+        "Travel & Culture": {}
+      }
+    },
+    "7.2 Stationery": {
+      "Writing Instruments": {
+        "Ball Pens": {},
+        "Gel Pens": {},
+        "Fountain Pens": {},
+        "Mechanical Pencils": {},
+        "Highlighters": {},
+        "Markers": {}
+      },
+      "Paper Products": {
+        "Notebooks": {},
+        "Diaries & Planners": {},
+        "Loose Sheets": {},
+        "Drawing Paper": {},
+        "Chart Paper": {}
+      },
+      "Office Supplies": {
+        "Files & Folders": {},
+        "Staplers & Pins": {},
+        "Paper Clips": {},
+        "Tape & Dispensers": {},
+        "Calculators": {}
+      },
+      "Desk Accessories": {
+        "Pen Stands": {},
+        "Desk Organizers": {},
+        "Mouse Pads": {},
+        "Desk Calendars": {}
+      }
+    },
+    "7.3 Art & Craft Materials": {
+      "Drawing & Painting": {
+        "Sketch Pencils": {},
+        "Charcoal": {},
+        "Crayons": {},
+        "Oil Pastels": {},
+        "Watercolors": {},
+        "Acrylic Paints": {},
+        "Poster Colors": {},
+        "Paint Brushes": {}
+      },
+      "Craft Supplies": {
+        "Colored Paper": {},
+        "Origami Paper": {},
+        "Craft Foam": {},
+        "Glitter": {},
+        "Stickers": {},
+        "Beads & Sequins": {}
+      },
+      "DIY & Hobby Kits": {
+        "Painting Kits": {},
+        "Craft Kits for Kids": {},
+        "Model Making Kits": {},
+        "Scrapbooking Kits": {}
+      },
+      "Tools & Accessories": {
+        "Scissors": {},
+        "Glue & Adhesives": {},
+        "Cutting Mats": {},
+        "Rulers & Compasses": {}
+      }
+    },
+    "7.4 Educational Aids": {
+      "Learning Tools": {
+        "Flash Cards": {},
+        "Educational Charts": {},
+        "Maps & Globes": {},
+        "Abacus": {}
+      },
+      "Digital Learning Accessories": {
+        "E-Readers": {},
+        "Stylus Pens": {},
+        "Headphones for Study": {}
+      },
+      "School Essentials": {
+        "School Bags": {},
+        "Lunch Boxes": {},
+        "Water Bottles": {}
+      }
+    }
+  },
+  "IT & Software Services": {
+    "Web Development": {
+      "Frontend Development": {
+        "HTML5 / CSS3": {},
+        "JavaScript": {},
+        "React.js": {},
+        "Angular": {},
+        "Vue.js": {},
+        "UI / UX Implementation": {}
+      },
+      "Backend Development": {
+        "Node.js": {},
+        "Python (Django / Flask)": {},
+        "Java (Spring Boot)": {},
+        "PHP (Laravel)": {},
+        "Ruby on Rails": {}
+      },
+      "Full Stack Development": {
+        "MERN Stack": {},
+        "MEAN Stack": {},
+        "LAMP Stack": {}
+      },
+      "Web Platforms": {
+        "E-commerce Websites": {},
+        "Corporate Websites": {},
+        "CMS Development": {
+          "WordPress": {},
+          "Drupal": {},
+          "Headless CMS": {}
+        },
+        "Web Portals": {
+          "B2B Portals": {},
+          "B2C Portals": {},
+          "Admin Dashboards": {}
+        }
+      },
+      "Web Maintenance & Optimization": {
+        "Website Maintenance": {},
+        "Performance Optimization": {},
+        "SEO Technical Optimization": {},
+        "Security Hardening": {},
+        "Migration & Upgrades": {}
+      }
+    },
+    "Mobile App Development": {
+      "Android App Development": {
+        "Native Android (Kotlin / Java)": {},
+        "Hybrid Apps": {
+          "Flutter": {},
+          "React Native": {}
+        }
+      },
+      "iOS App Development": {
+        "Swift": {},
+        "Objective-C": {}
+      },
+      "Cross-Platform Development": {
+        "Flutter": {},
+        "React Native": {},
+        "Ionic": {}
+      },
+      "Mobile App Features": {
+        "UI / UX Design": {},
+        "API Integration": {},
+        "Push Notifications": {},
+        "In-App Purchases": {},
+        "Offline Mode": {}
+      },
+      "App Maintenance & Support": {
+        "Bug Fixes": {},
+        "Performance Optimization": {},
+        "App Store Deployment": {},
+        "Version Upgrades": {}
+      }
+    },
+    "AI / ML Solutions": {
+      "Machine Learning": {
+        "Supervised Learning": {},
+        "Unsupervised Learning": {},
+        "Reinforcement Learning": {}
+      },
+      "Deep Learning": {
+        "Neural Networks": {},
+        "CNN": {},
+        "RNN": {},
+        "Transformers": {}
+      },
+      "Natural Language Processing": {
+        "Chatbots": {},
+        "Text Classification": {},
+        "Sentiment Analysis": {},
+        "Speech-to-Text": {}
+      },
+      "Computer Vision": {
+        "Image Classification": {},
+        "Object Detection": {},
+        "Face Recognition": {},
+        "OCR": {}
+      },
+      "AI Applications": {
+        "Recommendation Systems": {},
+        "Fraud Detection": {},
+        "Predictive Analytics": {},
+        "RAG Systems": {}
+      },
+      "Model Lifecycle": {
+        "Data Preparation": {},
+        "Model Training": {},
+        "Model Evaluation": {},
+        "Model Deployment": {},
+        "Monitoring & Retraining": {}
+      }
+    },
+    "Data Analytics & BI": {
+      "Data Engineering": {
+        "Data Collection": {},
+        "ETL / ELT Pipelines": {},
+        "Data Warehousing": {},
+        "Data Lakes": {}
+      },
+      "Data Analytics": {
+        "Descriptive Analytics": {},
+        "Diagnostic Analytics": {},
+        "Predictive Analytics": {},
+        "Prescriptive Analytics": {}
+      },
+      "Business Intelligence": {
+        "Dashboards & Reports": {},
+        "KPI Tracking": {},
+        "Self-Service BI": {}
+      },
+      "Tools & Platforms": {
+        "Power BI": {},
+        "Tableau": {},
+        "Looker": {},
+        "Excel Analytics": {}
+      },
+      "Big Data Analytics": {
+        "Hadoop": {},
+        "Spark": {},
+        "Kafka": {}
+      }
+    },
+    "Cloud & DevOps": {
+      "Cloud Services": {
+        "Cloud Architecture Design": {},
+        "Cloud Migration": {},
+        "Cloud Optimization": {}
+      },
+      "Cloud Platforms": {
+        "AWS": {},
+        "Microsoft Azure": {},
+        "Google Cloud Platform": {}
+      },
+      "DevOps Practices": {
+        "CI / CD Pipelines": {},
+        "Infrastructure as Code": {
+          "Terraform": {},
+          "CloudFormation": {}
+        },
+        "Configuration Management": {
+          "Ansible": {},
+          "Chef": {}
+        }
+      },
+      "Containerization": {
+        "Docker": {},
+        "Kubernetes": {},
+        "Helm": {}
+      },
+      "Monitoring & Logging": {
+        "Prometheus": {},
+        "Grafana": {},
+        "ELK Stack": {}
+      }
+    },
+    "Cybersecurity Services": {
+      "Security Assessment": {
+        "Vulnerability Assessment": {},
+        "Penetration Testing": {},
+        "Risk Analysis": {}
+      },
+      "Application Security": {
+        "Web Application Security": {},
+        "API Security": {},
+        "Secure Code Review": {}
+      },
+      "Network Security": {
+        "Firewalls": {},
+        "IDS / IPS": {},
+        "VPN": {}
+      },
+      "Cloud Security": {
+        "Identity & Access Management": {},
+        "Cloud Compliance": {},
+        "Data Encryption": {}
+      },
+      "Security Operations": {
+        "SIEM": {},
+        "Incident Response": {},
+        "Threat Monitoring": {}
+      },
+      "Compliance & Governance": {
+        "ISO 27001": {},
+        "SOC 2": {},
+        "GDPR": {},
+        "HIPAA": {}
+      }
+    }
+  },
+  "Furniture": {
+    "Living Room Furniture": {
+      "Seating": {
+        "Sofas": {
+          "1-Seater": {},
+          "2-Seater": {},
+          "3-Seater": {},
+          "L-Shaped / Sectional": {}
+        },
+        "Recliners": {},
+        "Armchairs": {},
+        "Ottomans & Pouffes": {}
+      },
+      "Tables": {
+        "Coffee Tables": {},
+        "Center Tables": {},
+        "Side Tables": {},
+        "Nesting Tables": {},
+        "Console Tables": {}
+      },
+      "Storage & Display": {
+        "TV Units": {},
+        "Bookshelves": {},
+        "Display Cabinets": {},
+        "Wall Shelves": {}
+      }
+    },
+    "Bedroom Furniture": {
+      "Beds": {
+        "Single Bed": {},
+        "Double Bed": {},
+        "Queen Size Bed": {},
+        "King Size Bed": {},
+        "Storage Bed": {},
+        "Bunk Bed": {}
+      },
+      "Storage": {
+        "Wardrobes": {
+          "2-Door": {},
+          "3-Door": {},
+          "Sliding Door": {}
+        },
+        "Chest of Drawers": {},
+        "Bedside Tables": {}
+      },
+      "Accessories": {
+        "Dressers": {},
+        "Vanity Units": {},
+        "Mirrors": {}
+      }
+    },
+    "Dining Room Furniture": {
+      "Dining Sets": {
+        "2-Seater": {},
+        "4-Seater": {},
+        "6-Seater": {},
+        "8-Seater": {}
+      },
+      "Dining Tables": {
+        "Wooden": {},
+        "Glass Top": {},
+        "Extendable": {}
+      },
+      "Seating": {
+        "Dining Chairs": {},
+        "Benches": {},
+        "Bar Stools": {}
+      },
+      "Storage": {
+        "Crockery Units": {},
+        "Sideboards": {},
+        "Buffets": {}
+      }
+    },
+    "Office & Study Furniture": {
+      "Desks & Tables": {
+        "Office Desks": {},
+        "Computer Tables": {},
+        "Writing Tables": {},
+        "Standing Desks": {}
+      },
+      "Seating": {
+        "Office Chairs": {},
+        "Ergonomic Chairs": {},
+        "Visitor Chairs": {},
+        "Conference Chairs": {}
+      },
+      "Storage": {
+        "Filing Cabinets": {},
+        "Pedestals": {},
+        "Bookshelves": {}
+      }
+    },
+    "Kitchen Furniture": {
+      "Modular Kitchen Units": {},
+      "Wall Cabinets": {},
+      "Base Cabinets": {},
+      "Pantry Units": {},
+      "Kitchen Trolleys": {}
+    },
+    "Outdoor & Garden Furniture": {
+      "Garden Chairs": {},
+      "Garden Tables": {},
+      "Patio Sets": {},
+      "Swing Chairs": {},
+      "Sun Loungers": {},
+      "Hammocks": {}
+    },
+    "Kids & Baby Furniture": {
+      "Cribs & Baby Beds": {},
+      "Kids Beds": {},
+      "Study Tables": {},
+      "Kids Chairs": {},
+      "Toy Storage Units": {},
+      "Kids Wardrobes": {}
+    },
+    "Storage & Utility Furniture": {
+      "Shoe Racks": {},
+      "Storage Cabinets": {},
+      "Sideboards": {},
+      "Room Dividers": {},
+      "Folding Furniture": {},
+      "Stackable Units": {}
+    },
+    "Furniture by Material": {
+      "Solid Wood": {},
+      "Engineered Wood": {},
+      "Metal": {},
+      "Plastic": {},
+      "Glass": {},
+      "Upholstered": {}
+    },
+    "Furniture by Style": {
+      "Modern": {},
+      "Contemporary": {},
+      "Traditional": {},
+      "Minimalist": {},
+      "Industrial": {},
+      "Scandinavian": {},
+      "Vintage / Antique": {}
+    }
+  }
+}

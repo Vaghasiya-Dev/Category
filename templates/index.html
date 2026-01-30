@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Access Portal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --primary-dark: #3d5bff;
+            --shadow: 0 20px 60px rgba(0,0,0,0.25);
+            --radius: 18px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            color: var(--text);
+        }
+        .shell {
+            width: min(1100px, 100%);
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            display: grid;
+            gap: 22px;
+        }
+        header { display: grid; gap: 10px; }
+        header h1 { font-size: 2rem; }
+        header p { color: var(--muted); line-height: 1.5; }
+        .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { padding: 8px 12px; border-radius: 999px; background: rgba(91,123,255,0.12); color: var(--primary-dark); font-weight: 600; font-size: 0.9rem; }
+        .actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        a.btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            box-shadow: 0 10px 30px rgba(91,123,255,0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        a.btn.secondary { background: #f3f4f6; color: #1f2933; box-shadow: none; }
+        a.btn:hover { transform: translateY(-1px); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+        .card { border: 1px solid #e5e7eb; border-radius: 14px; padding: 14px 16px; background: #f8fafc; display: grid; gap: 8px; }
+        .card h3 { font-size: 1.05rem; }
+        .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+        .list { list-style: none; display: grid; gap: 6px; }
+        .list li { display: flex; gap: 8px; color: var(--muted); font-size: 0.95rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); margin-top: 6px; flex-shrink: 0; }
+        @media (max-width: 820px) { .actions { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>Unified Login-Style Workspace</h1>
+            <p>Single, consistent interface for Login, Dashboard, Settings, Blog, Category, Admin, and Super Admin panels. All protected content and uploaded assets are surfaced through this unified portal.</p>
+            <div class="badge-row">
+                <span class="badge">Super Admin</span>
+                <span class="badge">Admin</span>
+                <span class="badge">Employee</span>
+                <span class="badge">JWT Secured</span>
+                <span class="badge">RBAC</span>
+            </div>
+        </header>
+
+        <div class="actions">
+            <a class="btn" href="/dashboard">Dashboard</a>
+            <a class="btn" href="/settings-page">Settings</a>
+            <a class="btn" href="/blog-page">Blog</a>
+            <a class="btn" href="/category-page">Category</a>
+            <a class="btn" href="/admin">Admin Panel</a>
+            <a class="btn" href="/super-admin">Super Admin</a>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Login</h3>
+                <p>JWT-based authentication; employees get view-only access; admins and super admins inherit elevated permissions.</p>
+            </div>
+            <div class="card">
+                <h3>Dashboard</h3>
+                <p>Landing shell for authenticated users; links into module cards using the same login-style layout.</p>
+            </div>
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Admins and super admins can read/update allowed settings via /api/settings.</p>
+            </div>
+            <div class="card">
+                <h3>Blog</h3>
+                <p>Editable content for admins and super admins via /api/blog; employees have read-only visibility if exposed.</p>
+            </div>
+            <div class="card">
+                <h3>Category</h3>
+                <p>Hierarchical catalog. Super admins can CRUD; admins and employees consume read-only data.</p>
+            </div>
+            <div class="card">
+                <h3>Admin Panel</h3>
+                <p>Admin scope to manage employees and view categories, audiences, settings, and blog updates.</p>
+            </div>
+            <div class="card">
+                <h3>Super Admin Panel</h3>
+                <p>Full control over users, categories, audiences, blog, and settings with audit-friendly JSON stores.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Role Permissions</h3>
+            <ul class="list">
+                <li><span class="dot"></span><strong>Employee:</strong> login only; view permitted content.</li>
+                <li><span class="dot"></span><strong>Admin:</strong> manage employees; edit blog; update settings; categories read-only; no audience management.</li>
+                <li><span class="dot"></span><strong>Super Admin:</strong> full CRUD on users, categories, and audiences; edit blog and settings; end-to-end control.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

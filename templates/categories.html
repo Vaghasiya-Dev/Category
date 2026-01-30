@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 28px;
+        }
+        .shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            color: var(--text);
+        }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+        header h1 { font-size: 1.8rem; }
+        .btn-back {
+            text-decoration: none;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            color: var(--text);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 10px 14px; background: linear-gradient(135deg, #5b7bff, #7f53ac); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn:hover { transform: translateY(-1px); }
+        .tree-controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+        .tree-controls button { padding: 8px 12px; background: #e5e7eb; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+        .tree-controls button:hover { background: #d1d5db; }
+        .tree-controls #searchInput { flex: 1; min-width: 200px; max-width: 300px; }
+        .tree-container {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 650px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+        }
+        .tree-root { list-style: none; }
+        .tree-node {
+            margin: 6px 0;
+            position: relative;
+        }
+        .tree-node-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: all 0.2s;
+        }
+        .tree-node-content:hover { background: #ede9fe; }
+        .tree-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .tree-toggle.collapsed::before { content: "▶"; }
+        .tree-toggle.expanded::before { content: "▼"; }
+        .tree-toggle.no-children { visibility: hidden; }
+        .tree-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        .tree-icon {
+            font-size: 1rem;
+        }
+        .tree-children {
+            list-style: none;
+            margin-left: 18px;
+            border-left: 2px solid #e5e7eb;
+            padding-left: 8px;
+        }
+        .tree-node.level-0 .tree-label { color: var(--primary); font-weight: 600; font-size: 1.05rem; }
+        .tree-node.level-1 .tree-label { font-weight: 550; }
+        .tree-node.level-2 .tree-label { font-size: 0.95rem; }
+        .tree-node.level-3 .tree-label { font-size: 0.9rem; color: #6b7280; }
+        .search-highlight .tree-node-content { 
+            background: #fef3c7 !important; 
+            border-left: 3px solid #f59e0b;
+            padding-left: 7px;
+        }
+        .message { padding: 12px; border-radius: 8px; margin-bottom: 14px; display: none; }
+        .message.success { background: #d4edda; color: #155724; }
+        .message.error { background: #f8d7da; color: #721c24; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        #searchInput { padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.95rem; }
+        .tree-title { margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .loading-text { color: var(--muted); }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.2s;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 550px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h2 { font-size: 1.5rem; color: var(--primary); }
+        .close-btn {
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .close-btn:hover { color: #000; }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(91, 123, 255, 0.1);
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-btn.primary {
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            color: white;
+        }
+        .modal-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(91, 123, 255, 0.3); }
+        .modal-btn.secondary {
+            background: #e5e7eb;
+            color: var(--text);
+        }
+        .modal-btn.secondary:hover { background: #d1d5db; }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 2px;
+        }
+        .category-badge {
+            background: linear-gradient(135deg, #5b7bff20, #7f53ac20);
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .loading-audiences {
+            color: var(--muted);
+        }
+        .audience-item {
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+        .audience-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .audience-email {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        .audience-description {
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        .audience-date {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .audience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .audience-header {
+            margin-bottom: 12px;
+        }
+        .audience-empty {
+            color: var(--muted);
+            text-align: center;
+            padding: 20px;
+        }
+        .audience-error {
+            color: #f93e3e;
+            text-align: center;
+            padding: 20px;
+        }
+        .btn-small {
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+        .btn-view {
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            margin-left: 4px;
+            background: #10b981;
+        }
+        .age-range-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .age-range-label {
+            color: var(--muted);
+        }
+        .form-help-text {
+            color: var(--muted);
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 4px;
+        }
+        .age-input-wrapper {
+            flex: 1;
+        }
+        .audience-btn-container {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .btn-edit {
+            background: #10b981;
+        }
+        .btn-edit:hover {
+            background: #059669;
+        }
+        .btn-hidden {
+            display: none;
+        }
+        .has-audience-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>📂 Categories</h1>
+            <a href="/dashboard" class="btn-back">← Back to Dashboard</a>
+        </header>
+
+        <div class="message" id="message"></div>
+
+        <div class="controls" id="controls"></div>
+
+        <div class="tree-controls">
+            <button onclick="expandAll()">⬇ Expand All</button>
+            <button onclick="collapseAll()">⬆ Collapse All</button>
+            <input type="text" id="searchInput" placeholder="🔍 Search categories...">
+            <button type="button" onclick="clearSearch()">Clear</button>
+        </div>
+
+        <h3 class="tree-title">Category Tree</h3>
+        <div class="tree-container" id="treeContainer">
+            <p class="loading-text">Loading categories...</p>
+        </div>
+    </div>
+
+    <!-- Add Audience Modal -->
+    <div id="audienceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👥 Add Audience to Category</h2>
+                <button class="close-btn" onclick="closeAudienceModal()">&times;</button>
+            </div>
+            <form id="audienceForm">
+                <div class="form-group">
+                    <label for="categoryPath">Category Path *</label>
+                    <input type="text" id="categoryPath" placeholder="e.g., Electronics > Audio Device > Headphones" readonly>
+                    <input type="hidden" id="categoryPathArray">
+                </div>
+                <div class="form-group">
+                    <label for="audienceName">Audience Names *</label>
+                    <input type="text" id="audienceName" placeholder="e.g., cardio, fitness, yoga" required>
+                    <small class="form-help-text">
+                        Enter multiple audience names separated by commas. Spaces will be trimmed automatically.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Age Range *</label>
+                    <div class="age-range-container">
+                        <div class="age-input-wrapper">
+                            <input type="number" id="minAge" placeholder="18" min="0" max="150" required>
+                        </div>
+                        <span class="age-range-label">to</span>
+                        <div class="age-input-wrapper">
+                            <input type="number" id="maxAge" placeholder="65" min="0" max="150" required>
+                        </div>
+                    </div>
+                    <small class="form-help-text">
+                        Enter minimum and maximum age for the target audience
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="audienceDescription">Description</label>
+                    <textarea id="audienceDescription" placeholder="Brief description about the audience"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="targetCriteria">Target Criteria</label>
+                    <input type="text" id="targetCriteria" placeholder="e.g., age:25-40,interest:tech">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn secondary" onclick="closeAudienceModal()">Cancel</button>
+                    <button type="submit" class="modal-btn primary">Add Audience</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Audience Modal -->
+    <div id="editAudienceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Edit Audience</h2>
+                <button class="close-btn" onclick="closeEditAudienceModal()">&times;</button>
+            </div>
+            <form id="editAudienceForm">
+                <div class="form-group">
+                    <label for="editCategoryPath">Category Path *</label>
+                    <input type="text" id="editCategoryPath" placeholder="e.g., Electronics > Audio Device > Headphones" readonly>
+                    <input type="hidden" id="editCategoryPathArray">
+                    <input type="hidden" id="editAudienceId">
+                </div>
+                <div class="form-group">
+                    <label for="editAudienceName">Audience Names *</label>
+                    <input type="text" id="editAudienceName" placeholder="e.g., cardio, fitness, yoga" required>
+                    <small class="form-help-text">
+                        Enter multiple audience names separated by commas. Spaces will be trimmed automatically.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Age Range *</label>
+                    <div class="age-range-container">
+                        <div class="age-input-wrapper">
+                            <input type="number" id="editMinAge" placeholder="18" min="0" max="150" required>
+                        </div>
+                        <span class="age-range-label">to</span>
+                        <div class="age-input-wrapper">
+                            <input type="number" id="editMaxAge" placeholder="65" min="0" max="150" required>
+                        </div>
+                    </div>
+                    <small class="form-help-text">
+                        Enter minimum and maximum age for the target audience
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="editAudienceDescription">Description</label>
+                    <textarea id="editAudienceDescription" placeholder="Brief description about the audience"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editTargetCriteria">Target Criteria</label>
+                    <input type="text" id="editTargetCriteria" placeholder="e.g., age:25-40,interest:tech">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn secondary" onclick="closeEditAudienceModal()">Cancel</button>
+                    <button type="submit" class="modal-btn primary">Update Audience</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Audiences Modal -->
+    <div id="viewAudiencesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👥 Audiences for Category</h2>
+                <button class="close-btn" onclick="closeViewAudiencesModal()">&times;</button>
+            </div>
+            <div id="audiencesList">
+                <p class="form-help-text">Loading audiences...</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="modal-btn secondary" onclick="closeViewAudiencesModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let categoryData = {};
+        let expandedNodes = new Set();
+
+        const categoryIcons = {
+            'Electronics': '🔌',
+            'Fashion': '👗',
+            'Home': '🏠',
+            'Books': '📚',
+            'Sports': '⚽',
+            'Toys': '🎮',
+            'Food': '🍔',
+            'Beauty': '💄',
+            'Furniture': '🛋️',
+            'Groceries': '🛒',
+            'Health': '⚕️',
+            'Audio Device': '🔊',
+            'Camera': '📷',
+            'Kitchen': '🍳',
+            'Phone': '📱',
+            'Laptop': '💻',
+            'TV': '📺',
+            'Watch': '⌚',
+            'Shoe': '👟',
+            'Shirt': '👕',
+        };
+
+        function getIcon(name) {
+            for (let key in categoryIcons) {
+                if (name.includes(key)) return categoryIcons[key];
+            }
+            return '📁';
+        }
+
+        function hasChildren(obj) {
+            return Object.keys(obj).length > 0;
+        }
+
+        function renderTree(categories, parentLevel = 0, parentPath = []) {
+            const ul = document.createElement('ul');
+            ul.className = 'tree-root';
+
+            for (let [name, children] of Object.entries(categories)) {
+                const hasKids = hasChildren(children);
+                const nodeId = `node_${Math.random().toString(36).substr(2, 9)}`;
+            const currentPath = [...parentPath, name];
+                
+                const li = document.createElement('li');
+                li.className = `tree-node level-${parentLevel}`;
+                li.setAttribute('data-node-id', nodeId);
+                li.setAttribute('data-category-name', name);
+            li.setAttribute('data-category-path', JSON.stringify(currentPath));
+
+                const content = document.createElement('div');
+                content.className = 'tree-node-content';
+
+                const toggle = document.createElement('div');
+                toggle.className = `tree-toggle ${hasKids ? 'collapsed' : 'no-children'}`;
+                if (hasKids) {
+                    toggle.onclick = (e) => {
+                        e.stopPropagation();
+                        toggleNode(nodeId, toggle, li);
+                    };
+                }
+
+                const label = document.createElement('div');
+                label.className = 'tree-label';
+                label.innerHTML = `<span class="tree-icon">${getIcon(name)}</span><span>${name}</span>`;
+                
+                // Create button container for add/edit and view buttons
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'audience-btn-container';
+                btnContainer.setAttribute('data-node-id', nodeId);
+                
+                // Add audience button (initially visible)
+                const addBtn = document.createElement('button');
+                addBtn.innerHTML = '👥 Add';
+                addBtn.className = 'btn btn-small btn-add';
+                addBtn.setAttribute('data-node-id', nodeId);
+                addBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    openAudienceModal(li);
+                };
+                btnContainer.appendChild(addBtn);
+                
+                // Edit audience button (initially hidden)
+                const editBtn = document.createElement('button');
+                editBtn.innerHTML = '✏️ Edit';
+                editBtn.className = 'btn btn-small btn-edit btn-hidden';
+                editBtn.setAttribute('data-node-id', nodeId);
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    openEditAudienceModal(li);
+                };
+                btnContainer.appendChild(editBtn);
+                
+                // View button
+                const viewBtn = document.createElement('button');
+                viewBtn.innerHTML = '👁️';
+                viewBtn.className = 'btn btn-view';
+                viewBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    viewCategoryAudiences(li);
+                };
+                btnContainer.appendChild(viewBtn);
+
+                label.appendChild(btnContainer);
+                content.appendChild(toggle);
+                content.appendChild(label);
+                li.appendChild(content);
+
+                if (hasKids) {
+                    const childrenUl = document.createElement('ul');
+                    childrenUl.className = 'tree-children';
+                    childrenUl.id = `children_${nodeId}`;
+                    childrenUl.style.display = 'none';
+                    childrenUl.appendChild(renderTree(children, parentLevel + 1, currentPath).firstChild);
+                    li.appendChild(childrenUl);
+                }
+
+                ul.appendChild(li);
+                
+                // Check if category has audience and update button visibility
+                checkAudienceStatus(li, currentPath);
+            }
+
+            return { firstChild: ul };
+        }
+
+        function toggleNode(nodeId, toggle, li) {
+            const childrenContainer = li.querySelector(`#children_${nodeId}`);
+            if (!childrenContainer) return;
+
+            const isExpanded = expandedNodes.has(nodeId);
+            if (isExpanded) {
+                childrenContainer.style.display = 'none';
+                toggle.classList.remove('expanded');
+                toggle.classList.add('collapsed');
+                expandedNodes.delete(nodeId);
+            } else {
+                childrenContainer.style.display = 'block';
+                toggle.classList.remove('collapsed');
+                toggle.classList.add('expanded');
+                expandedNodes.add(nodeId);
+            }
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.tree-children').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.tree-toggle').forEach(el => {
+                if (!el.classList.contains('no-children')) {
+                    el.classList.remove('collapsed');
+                    el.classList.add('expanded');
+                }
+            });
+            expandedNodes.clear();
+            document.querySelectorAll('[data-node-id]').forEach(el => expandedNodes.add(el.getAttribute('data-node-id')));
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.tree-children').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tree-toggle').forEach(el => {
+                if (!el.classList.contains('no-children')) {
+                    el.classList.add('collapsed');
+                    el.classList.remove('expanded');
+                }
+            });
+            expandedNodes.clear();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filterTree('');
+        }
+
+        function filterTree(query) {
+            const allNodes = document.querySelectorAll('.tree-node');
+            
+            if (query === '') {
+                // Reset: show all nodes, collapse all
+                allNodes.forEach(node => {
+                    node.style.display = '';
+                    node.classList.remove('search-highlight');
+                });
+                collapseAll();
+                return;
+            }
+            
+            const lowerQuery = query.toLowerCase();
+            const matchingNodes = new Set();
+            
+            // Find all matching nodes
+            allNodes.forEach(node => {
+                const name = node.getAttribute('data-category-name');
+                if (name && name.toLowerCase().includes(lowerQuery)) {
+                    matchingNodes.add(node);
+                    node.classList.add('search-highlight');
+                    
+                    // Add all parent nodes to show hierarchy
+                    let parent = node.parentElement?.closest('.tree-node');
+                    while (parent) {
+                        matchingNodes.add(parent);
+                        parent = parent.parentElement?.closest('.tree-node');
+                    }
+                } else {
+                    node.classList.remove('search-highlight');
+                }
+            });
+            
+            // Hide non-matching nodes, show matching ones
+            allNodes.forEach(node => {
+                if (matchingNodes.has(node)) {
+                    node.style.display = '';
+                    
+                    // Expand parent nodes to show matches
+                    const childrenContainer = node.querySelector('.tree-children');
+                    if (childrenContainer) {
+                        const hasMatchingChild = Array.from(childrenContainer.querySelectorAll('.tree-node')).some(child => 
+                            matchingNodes.has(child)
+                        );
+                        if (hasMatchingChild) {
+                            childrenContainer.style.display = 'block';
+                            const toggle = node.querySelector('.tree-toggle');
+                            if (toggle && !toggle.classList.contains('no-children')) {
+                                toggle.classList.remove('collapsed');
+                                toggle.classList.add('expanded');
+                            }
+                        }
+                    }
+                } else {
+                    node.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('searchInput')?.addEventListener('input', (e) => {
+            filterTree(e.target.value);
+        });
+
+        // Diagnostic function to verify authentication
+        async function verifyAuth() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                console.error('No token found in localStorage');
+                return false;
+            }
+            
+            try {
+                const response = await fetch('/api/auth/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('✓ Auth verified - User:', data.user.username, 'Role:', data.user.role);
+                    return true;
+                } else {
+                    console.error('✗ Auth failed - Status:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.error('✗ Auth check error:', error);
+                return false;
+            }
+        }
+
+        async function loadCategories() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                console.error('No authentication token found');
+                document.getElementById('treeContainer').innerHTML = `<p class="audience-error">Please <a href="/login">log in</a> to view categories</p>`;
+                showMessage('Authentication required. Redirecting to login...', 'error');
+                setTimeout(() => window.location.href = '/login', 2000);
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            console.log('Loading categories for user:', user.username, 'Role:', user.role);
+            
+            // Verify auth before loading categories
+            const authValid = await verifyAuth();
+            if (!authValid) {
+                console.error('Authentication verification failed');
+                document.getElementById('treeContainer').innerHTML = `
+                    <p class="audience-error">
+                        Authentication failed. Your session may have expired.<br>
+                        <a href="/login" style="color: var(--primary); text-decoration: underline;">Click here to login again</a>
+                    </p>
+                `;
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('user');
+                setTimeout(() => window.location.href = '/login', 2000);
+                return;
+            }
+
+            // Show CRUD buttons for super_admin only
+            if (user.role === 'super_admin') {
+                document.getElementById('controls').innerHTML = `
+                    <button class="btn" onclick="openAddDialog()">+ Add Category</button>
+                    <button class="btn" onclick="openUpdateDialog()" style="background: #fca130;">✎ Update</button>
+                    <button class="btn" onclick="openDeleteDialog()" style="background: #f93e3e;">✕ Delete</button>
+                `;
+            }
+
+            try {
+                console.log('Fetching categories with token:', token.substring(0, 20) + '...');
+                
+                const response = await fetch('/api/categories/', {
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        console.error('Authentication failed - token may be expired');
+                        document.getElementById('treeContainer').innerHTML = `
+                            <p class="audience-error">
+                                Authentication failed. Your session may have expired.<br>
+                                <a href="/login" style="color: var(--primary); text-decoration: underline;">Click here to login again</a>
+                            </p>
+                        `;
+                        showMessage('Session expired. Please login again.', 'error');
+                        
+                        // Clear invalid token
+                        localStorage.removeItem('access_token');
+                        localStorage.removeItem('user');
+                        
+                        setTimeout(() => window.location.href = '/login', 2000);
+                        return;
+                    }
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Categories loaded:', Object.keys(data.categories || {}).length, 'root categories');
+                
+                if (data.success) {
+                    categoryData = data.categories;
+                    const tree = renderTree(data.categories);
+                    document.getElementById('treeContainer').innerHTML = '';
+                    document.getElementById('treeContainer').appendChild(tree.firstChild);
+                    console.log('Category tree rendered successfully');
+                } else {
+                    console.error('API returned success: false -', data.message);
+                    document.getElementById('treeContainer').innerHTML = `<p class="audience-error">Failed to load categories: ${data.message || 'Unknown error'}</p>`;
+                    showMessage(data.message || 'Failed to load categories', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                document.getElementById('treeContainer').innerHTML = `
+                    <p class="audience-error">
+                        Error loading categories: ${error.message}<br>
+                        <small style="color: var(--muted);">Check browser console for details</small>
+                    </p>
+                `;
+                showMessage('Error loading categories: ' + error.message, 'error');
+            }
+        }
+
+        function showMessage(msg, type) {
+            const msgEl = document.getElementById('message');
+            msgEl.textContent = msg;
+            msgEl.className = `message ${type}`;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+
+        function openAddDialog() {
+            const name = prompt('Enter category name:');
+            if (!name) return;
+            // TODO: Implement add category
+        }
+
+        function openUpdateDialog() {
+            const path = prompt('Enter category path (comma-separated):');
+            if (!path) return;
+            // TODO: Implement update category
+        }
+
+        function openDeleteDialog() {
+            const path = prompt('Enter category path (comma-separated):');
+            if (!path) return;
+            // TODO: Implement delete category
+        }
+
+        // Audience Modal Functions
+        function getCategoryPath(node) {
+            const storedPath = node.getAttribute('data-category-path');
+            if (storedPath) {
+                try {
+                    const parsed = JSON.parse(storedPath);
+                    if (Array.isArray(parsed)) {
+                        return parsed;
+                    }
+                } catch (error) {
+                    console.warn('Invalid category path data on node', error);
+                }
+            }
+
+            const path = [];
+            let current = node;
+            
+            while (current && current.classList.contains('tree-node')) {
+                const name = current.getAttribute('data-category-name');
+                if (name) path.unshift(name);
+                current = current.parentElement?.closest('.tree-node');
+            }
+            
+            return path;
+        }
+
+        async function checkAudienceStatus(node, categoryPath) {
+            // Check if a category already has an audience assigned.
+            // If it does, hide the add button and show the edit button.
+            const token = localStorage.getItem('access_token');
+            if (!token) return;
+            
+            try {
+                const encodedPath = categoryPath.map(encodeURIComponent).join('/');
+                const response = await fetch(`/api/audiences/categories/${encodedPath}/has-audience`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                
+                if (data.success && data.has_audience) {
+                    // Hide add button, show edit button
+                    const addBtn = node.querySelector('.btn-add');
+                    const editBtn = node.querySelector('.btn-edit');
+                    
+                    if (addBtn) addBtn.classList.add('btn-hidden');
+                    if (editBtn) {
+                        editBtn.classList.remove('btn-hidden');
+                        // Store audience data in the edit button for later use
+                        editBtn.setAttribute('data-audience-id', data.audience_id);
+                    }
+                    
+                    // Store audience info in node for editing
+                    node.setAttribute('data-has-audience', 'true');
+                    node.setAttribute('data-audience-id', data.audience_id);
+                    node.setAttribute('data-audience-info', JSON.stringify(data.audience_info));
+                } else {
+                    // Show add button, hide edit button
+                    const addBtn = node.querySelector('.btn-add');
+                    const editBtn = node.querySelector('.btn-edit');
+                    
+                    if (addBtn) addBtn.classList.remove('btn-hidden');
+                    if (editBtn) editBtn.classList.add('btn-hidden');
+                    
+                    node.setAttribute('data-has-audience', 'false');
+                }
+            } catch (error) {
+                console.error('Error checking audience status:', error);
+            }
+        }
+
+        function openAudienceModal(node) {
+            const path = getCategoryPath(node);
+            document.getElementById('categoryPath').value = path.join(' > ');
+            document.getElementById('categoryPathArray').value = JSON.stringify(path);
+            document.getElementById('audienceModal').style.display = 'block';
+        }
+
+        function closeAudienceModal() {
+            document.getElementById('audienceModal').style.display = 'none';
+            document.getElementById('audienceForm').reset();
+        }
+
+        function openEditAudienceModal(node) {
+            const path = getCategoryPath(node);
+            const hasAudience = node.getAttribute('data-has-audience') === 'true';
+            const audienceId = node.getAttribute('data-audience-id');
+            const audienceInfoStr = node.getAttribute('data-audience-info');
+            
+            if (!hasAudience || !audienceId || !audienceInfoStr) {
+                showMessage('No audience found for this category', 'error');
+                return;
+            }
+            
+            const audienceInfo = JSON.parse(audienceInfoStr);
+            
+            // Populate form with existing data
+            document.getElementById('editCategoryPath').value = path.join(' > ');
+            document.getElementById('editCategoryPathArray').value = JSON.stringify(path);
+            document.getElementById('editAudienceId').value = audienceId;
+            
+            if (audienceInfo.names && Array.isArray(audienceInfo.names)) {
+                document.getElementById('editAudienceName').value = audienceInfo.names.join(', ');
+            } else if (audienceInfo.name) {
+                document.getElementById('editAudienceName').value = audienceInfo.name;
+            }
+            
+            document.getElementById('editMinAge').value = audienceInfo.min_age || '';
+            document.getElementById('editMaxAge').value = audienceInfo.max_age || '';
+            document.getElementById('editAudienceDescription').value = audienceInfo.description || '';
+            document.getElementById('editTargetCriteria').value = audienceInfo.target_criteria || '';
+            
+            document.getElementById('editAudienceModal').style.display = 'block';
+        }
+
+        function closeEditAudienceModal() {
+            document.getElementById('editAudienceModal').style.display = 'none';
+            document.getElementById('editAudienceForm').reset();
+        }
+
+        async function viewCategoryAudiences(node) {
+            const path = getCategoryPath(node);
+            const token = localStorage.getItem('access_token');
+            
+            document.getElementById('viewAudiencesModal').style.display = 'block';
+            document.getElementById('audiencesList').innerHTML = '<p style="color: var(--muted);">Loading audiences...</p>';
+            
+            try {
+                const encodedPath = path.map(encodeURIComponent).join('/');
+                console.log('Fetching audiences for path:', path, 'Encoded:', encodedPath);
+                
+                const response = await fetch(`/api/audiences/categories/${encodedPath}/audiences`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                console.log('Audiences response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Audiences data:', data);
+                
+                if (data.success && data.audiences.length > 0) {
+                    let html = `<h4 class="audience-header">Category: ${path.join(' > ')}</h4>`;
+                    html += `<div class="audience-container">`;
+                    
+                    data.audiences.forEach(aud => {
+                        // Handle names array (new format) or single name (legacy format)
+                        let namesDisplay = 'Unknown';
+                        if (aud.audience_info?.names && Array.isArray(aud.audience_info.names)) {
+                            namesDisplay = aud.audience_info.names.join(', ');
+                        } else if (aud.audience_info?.name) {
+                            namesDisplay = aud.audience_info.name;
+                        }
+                        
+                        const ageRange = (aud.audience_info?.min_age !== undefined && aud.audience_info?.max_age !== undefined)
+                            ? `Age: ${aud.audience_info.min_age} - ${aud.audience_info.max_age} years`
+                            : (aud.audience_info?.age_range 
+                                ? `Age: ${aud.audience_info.age_range} years`
+                                : 'Age: Not specified');
+                        html += `
+                            <div class="audience-item">
+                                <div class="audience-name">${namesDisplay}</div>
+                                <div class="audience-email">${ageRange}</div>
+                                ${aud.audience_info?.description ? `<div class="audience-description">${aud.audience_info.description}</div>` : ''}
+                                ${aud.audience_info?.target_criteria ? `<div class="audience-description"><strong>Criteria:</strong> ${aud.audience_info.target_criteria}</div>` : ''}
+                                <div class="audience-date">Added: ${new Date(aud.created_at || aud.assigned_at).toLocaleString()}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                    document.getElementById('audiencesList').innerHTML = html;
+                } else {
+                    document.getElementById('audiencesList').innerHTML = `
+                        <p class="audience-empty">
+                            No audiences assigned to this category yet.
+                        </p>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading audiences:', error);
+                document.getElementById('audiencesList').innerHTML = `
+                    <p class="audience-error">
+                        Error loading audiences: ${error.message}<br>
+                        <small style="color: var(--muted);">Check console for details</small>
+                    </p>
+                `;
+            }
+        }
+
+        function closeViewAudiencesModal() {
+            document.getElementById('viewAudiencesModal').style.display = 'none';
+        }
+
+        // Handle audience form submission
+        document.getElementById('audienceForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Process audience names
+            const nameInput = document.getElementById('audienceName').value.trim();
+            if (!nameInput) {
+                showMessage('Please enter at least one audience name', 'error');
+                return;
+            }
+            
+            // Split by comma, trim each name, and filter out empty strings
+            const names = nameInput
+                .split(',') 
+                .map(name => name.trim())
+                .filter(name => name.length > 0);
+            
+            if (names.length === 0) {
+                showMessage('Please enter valid audience name(s)', 'error');
+                return;
+            }
+            
+            // Process age range
+            const minAge = parseInt(document.getElementById('minAge').value);
+            const maxAge = parseInt(document.getElementById('maxAge').value);
+            
+            // Validate age range
+            if (isNaN(minAge) || isNaN(maxAge)) {
+                showMessage('Please enter valid age values', 'error');
+                return;
+            }
+            
+            if (minAge < 0 || maxAge < 0) {
+                showMessage('Age cannot be negative', 'error');
+                return;
+            }
+            
+            if (minAge > maxAge) {
+                showMessage('Minimum age cannot be greater than maximum age', 'error');
+                return;
+            }
+            
+            if (maxAge > 150) {
+                showMessage('Maximum age seems unrealistic (max: 150)', 'error');
+                return;
+            }
+            
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                showMessage('Authentication required. Please login again.', 'error');
+                window.location.href = '/login';
+                return;
+            }
+            
+            const path = JSON.parse(document.getElementById('categoryPathArray').value);
+            
+            const payload = {
+                audience_id: `aud_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+                category_path: path,
+                audience_info: {
+                    names: names, // Store as array
+                    min_age: minAge,
+                    max_age: maxAge,
+                    description: document.getElementById('audienceDescription').value.trim(),
+                    target_criteria: document.getElementById('targetCriteria').value.trim()
+                }
+            };
+            
+            console.log('Sending payload:', JSON.stringify(payload, null, 2));
+            
+            try {
+                const response = await fetch('/api/audiences/', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.success) {
+                    showMessage(`Successfully added ${names.length} audience name(s) to category!`, 'success');
+                    closeAudienceModal();
+                    // Reload to show updated data
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    showMessage(data.message || 'Failed to add audience', 'error');
+                }
+            } catch (error) {
+                console.error('Error adding audience:', error);
+                showMessage('Connection error. Please try again.', 'error');
+            }
+        });
+
+        // Handle edit audience form submission
+        document.getElementById('editAudienceForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const audienceId = document.getElementById('editAudienceId').value;
+            if (!audienceId) {
+                showMessage('Audience ID not found', 'error');
+                return;
+            }
+            
+            // Process audience names
+            const nameInput = document.getElementById('editAudienceName').value.trim();
+            if (!nameInput) {
+                showMessage('Please enter at least one audience name', 'error');
+                return;
+            }
+            
+            const names = nameInput
+                .split(',') 
+                .map(name => name.trim())
+                .filter(name => name.length > 0);
+            
+            if (names.length === 0) {
+                showMessage('Please enter valid audience name(s)', 'error');
+                return;
+            }
+            
+            // Process age range
+            const minAge = parseInt(document.getElementById('editMinAge').value);
+            const maxAge = parseInt(document.getElementById('editMaxAge').value);
+            
+            // Validate age range
+            if (isNaN(minAge) || isNaN(maxAge)) {
+                showMessage('Please enter valid age values', 'error');
+                return;
+            }
+            
+            if (minAge < 0 || maxAge < 0) {
+                showMessage('Age cannot be negative', 'error');
+                return;
+            }
+            
+            if (minAge > maxAge) {
+                showMessage('Minimum age cannot be greater than maximum age', 'error');
+                return;
+            }
+            
+            if (maxAge > 150) {
+                showMessage('Maximum age seems unrealistic (max: 150)', 'error');
+                return;
+            }
+            
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                showMessage('Authentication required. Please login again.', 'error');
+                window.location.href = '/login';
+                return;
+            }
+            
+            const payload = {
+                audience_info: {
+                    names: names,
+                    min_age: minAge,
+                    max_age: maxAge,
+                    description: document.getElementById('editAudienceDescription').value.trim(),
+                    target_criteria: document.getElementById('editTargetCriteria').value.trim()
+                }
+            };
+            
+            console.log('Updating audience:', audienceId, JSON.stringify(payload, null, 2));
+            
+            try {
+                const response = await fetch(`/api/audiences/${audienceId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('Update response status:', response.status);
+                const data = await response.json();
+                console.log('Update response data:', data);
+                
+                if (data.success) {
+                    showMessage('Successfully updated audience!', 'success');
+                    closeEditAudienceModal();
+                    // Reload to show updated data
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    showMessage(data.message || 'Failed to update audience', 'error');
+                }
+            } catch (error) {
+                console.error('Error updating audience:', error);
+                showMessage('Connection error. Please try again.', 'error');
+            }
+        });
+
+        // Close modals when clicking outside
+        window.onclick = (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+
+        loadCategories();
+    </script>
+</body>
+</html>

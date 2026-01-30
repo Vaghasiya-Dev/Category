@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin & Super Admin Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: linear-gradient(135deg, #5b7bff 0%, #7f53ac 50%, #c86dd7 100%);
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #6b7280;
+            --primary: #5b7bff;
+            --shadow: 0 18px 54px rgba(0,0,0,0.22);
+            --radius: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
+            color: var(--text);
+        }
+        .shell {
+            width: min(1150px, 100%);
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            display: grid;
+            gap: 20px;
+        }
+        header { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+        header h1 { font-size: 1.8rem; }
+        header p { color: var(--muted); max-width: 620px; }
+        .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+        a.btn {
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #5b7bff, #7f53ac);
+            box-shadow: 0 10px 30px rgba(91,123,255,0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        a.btn.secondary { background: #f3f4f6; color: #1f2933; box-shadow: none; }
+        a.btn:hover { transform: translateY(-1px); }
+        main { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+        .card { border: 1px solid #e5e7eb; border-radius: 14px; padding: 16px 18px; background: #f8fafc; display: grid; gap: 10px; }
+        .card h3 { font-size: 1.05rem; }
+        .card p { color: var(--muted); line-height: 1.5; }
+        .list { list-style: none; display: grid; gap: 8px; }
+        .list li { display: flex; gap: 8px; color: var(--muted); font-size: 0.95rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); margin-top: 7px; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <div>
+                <h1>Admin & Super Admin Panels</h1>
+                <p>Login-style shell that unifies admin and super admin workflows: employee management, audiences, categories, settings, and blog.</p>
+            </div>
+            <div class="nav">
+                <a class="btn" href="/dashboard">Dashboard</a>
+                <a class="btn" href="/settings-page">Settings</a>
+                <a class="btn" href="/blog-page">Blog</a>
+                <a class="btn" href="/category-page">Category</a>
+                <a class="btn secondary" href="/">Home</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="card">
+                <h3>Admin Scope</h3>
+                <ul class="list">
+                    <li><span class="dot"></span>Create, update, and deactivate Employees via /api/users/emp.</li>
+                    <li><span class="dot"></span>View all users; cannot create Admins.</li>
+                    <li><span class="dot"></span>Edit blog and settings; categories are read-only.</li>
+                    <li><span class="dot"></span>No audience management permissions.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Super Admin Scope</h3>
+                <ul class="list">
+                    <li><span class="dot"></span>Full CRUD on users including Admin creation via /api/users/admin.</li>
+                    <li><span class="dot"></span>Full category CRUD and audience management.</li>
+                    <li><span class="dot"></span>Edit blog and settings with elevated privileges.</li>
+                    <li><span class="dot"></span>Gateway for future modules with RBAC expansion.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Audiences</h3>
+                <p>Attach multi-level audiences to categories. Super Admin controls assignments; Admins have visibility only.</p>
+                <ul class="list">
+                    <li><span class="dot"></span>POST /api/audiences/ to add to a category.</li>
+                    <li><span class="dot"></span>GET /api/audiences/categories/:path/audiences to inspect.</li>
+                    <li><span class="dot"></span>DELETE /api/audiences/{id}/category/:path to detach.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Settings & Blog</h3>
+                <p>Login-style content editors surfaced through the unified UI.</p>
+                <ul class="list">
+                    <li><span class="dot"></span>Settings: /api/settings (Admin, Super Admin).</li>
+                    <li><span class="dot"></span>Blog: /api/blog (Admin, Super Admin).</li>
+                    <li><span class="dot"></span>Employees inherit view-only; no mutations.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
