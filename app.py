@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 from config import Config
+from database.kv_store import JSONStore
 from auth.routes import auth_bp
 from users.routes import users_bp
 from categories.routes import categories_bp
@@ -19,6 +20,34 @@ from pages.home_page import home_page_bp
 app = Flask(__name__)
 app.config.from_object(Config)
 CORS(app)
+
+# Initialize default data in KV if empty
+def initialize_kv_data():
+    """Initialize default data in KV storage"""
+    import json
+    from pathlib import Path
+    
+    # Load categories from local file if KV is empty
+    if not JSONStore.read('categories'):
+        categories_path = Path(__file__).parent / 'categories.json'
+        if categories_path.exists():
+            with open(categories_path, 'r') as f:
+                categories = json.load(f)
+                JSONStore.write('categories', categories)
+    
+    # Initialize blog if empty
+    if not JSONStore.read('blog'):
+        JSONStore.write('blog', {"title": "Welcome, to Catagory Contant", "content": "Admin can Access all Emp. SuperAdmin can CRUD in audience, etc. hello"})
+    
+    # Initialize settings if empty
+    if not JSONStore.read('settings'):
+        JSONStore.write('settings', {"theme": "minimal", "allow_signups": False})
+    
+    # Initialize audiences if empty
+    if not JSONStore.read('audiences'):
+        JSONStore.write('audiences', {})
+
+initialize_kv_data()
  
 # Register API blueprints
 app.register_blueprint(auth_bp)
@@ -41,17 +70,13 @@ app.register_blueprint(home_page_bp)
 @app.route('/categories')
 def public_categories():
     """Public category endpoint - no authentication required"""
-    import json
-    with open(app.config['CATEGORIES_DB_PATH'], 'r') as f:
-        categories = json.load(f)
+    categories = JSONStore.read('categories')
     return jsonify(categories)
  
 @app.route('/children/<parent_id>')
 def get_children(parent_id):
     """Public endpoint to get child categories"""
-    import json
-    with open(app.config['CATEGORIES_DB_PATH'], 'r') as f:
-        categories = json.load(f)
+    categories = JSONStore.read('categories')
     
     def find_node(node, target_id):
         if isinstance(node, dict):
