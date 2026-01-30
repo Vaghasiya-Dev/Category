@@ -82,7 +82,7 @@ class AuthHandler:
         if error:
             return None, error
         
-        repo = UserRepository(current_app.config['USERS_DB_PATH'])
+        repo = UserRepository()
         user = repo.find_by_id(payload['user_id'])
         
         if not user:
