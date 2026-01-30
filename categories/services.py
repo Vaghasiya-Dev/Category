@@ -1,23 +1,21 @@
 import json
-from pathlib import Path
 from flask import current_app
+from database.kv_store import JSONStore
  
  
 class CategoryService:
-    """Category service handling category business logic"""
+    """Category service handling category business logic using KV storage"""
     
     def __init__(self):
-        self.db_path = Path(current_app.config['CATEGORIES_DB_PATH'])
+        self.kv_key = 'categories'
     
     def _load_categories(self):
-        """Load categories from file"""
-        with open(self.db_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        """Load categories from Vercel KV storage"""
+        return JSONStore.read(self.kv_key)
     
     def _save_categories(self, categories):
-        """Save categories to file"""
-        with open(self.db_path, 'w', encoding='utf-8') as f:
-            json.dump(categories, f, indent=2, ensure_ascii=False)
+        """Save categories to Vercel KV storage"""
+        JSONStore.write(self.kv_key, categories)
     
     def get_all_categories(self):
         """Get all categories"""
