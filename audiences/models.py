@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from pathlib import Path
+from database.kv_store import JSONStore
  
  
 class Audience:
@@ -28,33 +29,20 @@ class Audience:
  
  
 class AudienceRepository:
-    """Audience data repository"""
+    """Audience data repository using KV storage"""
     
-    def __init__(self, db_path):
-        self.db_path = Path(db_path)
-        self.db_path.parent.mkdir(exist_ok=True)
+    def __init__(self, db_path=None):
+        # db_path kept for backward compatibility but not used with KV
+        self.kv_key = 'audiences'
         self._load_data()
     
     def _load_data(self):
-        """Load audiences from database file"""
-        if self.db_path.exists():
-            try:
-                with open(self.db_path, 'r') as f:
-                    content = f.read().strip()
-                    if content:
-                        self.data = json.loads(content)
-                    else:
-                        self.data = {}
-            except (json.JSONDecodeError, ValueError):
-                # Handle corrupted JSON by resetting to empty dict
-                self.data = {}
-        else:
-            self.data = {}
+        """Load audiences from Vercel KV storage"""
+        self.data = JSONStore.read(self.kv_key)
     
     def _save_data(self):
-        """Save audiences to database file"""
-        with open(self.db_path, 'w') as f:
-            json.dump(self.data, f, indent=2)
+        """Save audiences to Vercel KV storage"""
+        JSONStore.write(self.kv_key, self.data)
     
     def add_audience_to_category(self, audience_id, category_path, audience_info=None, created_by=None):
         """
