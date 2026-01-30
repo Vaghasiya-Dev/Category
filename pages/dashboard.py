@@ -13,7 +13,7 @@ class DashboardService:
     """Business logic for dashboard page"""
     
     def __init__(self):
-        self.user_repo = UserRepository(current_app.config['USERS_DB_PATH'])
+        self.user_repo = UserRepository()
     
     def get_user_profile(self, user_id):
         """Get user profile data"""
