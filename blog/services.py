@@ -1,24 +1,24 @@
 import json
-from pathlib import Path
 from flask import current_app
+from database.kv_store import JSONStore
 
 
 class BlogService:
-    """Service to manage blog content stored in JSON."""
+    """Service to manage blog content using Vercel KV storage."""
 
     def __init__(self):
-        self.db_path = Path(current_app.config['BLOG_DB_PATH'])
-        self.db_path.parent.mkdir(exist_ok=True)
+        self.kv_key = 'blog'
 
     def _load(self):
-        if not self.db_path.exists():
+        """Load blog data from KV storage"""
+        data = JSONStore.read(self.kv_key)
+        if not data:
             return {"title": "", "content": ""}
-        with open(self.db_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        return data
 
     def _save(self, data):
-        with open(self.db_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        """Save blog data to KV storage"""
+        JSONStore.write(self.kv_key, data)
 
     def get_blog(self):
         return self._load()
