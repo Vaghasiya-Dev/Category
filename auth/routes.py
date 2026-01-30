@@ -43,7 +43,7 @@ def signup():
             'message': 'Invalid role. Choose emp, admin, or super_admin'
         }), 400
 
-    repo = UserRepository(current_app.config['USERS_DB_PATH'])
+    repo = UserRepository()
     user, message = repo.create_user(
         username=data['username'],
         email=data['email'],
@@ -89,7 +89,7 @@ def login():
     username = data['username']
     password = data['password']
     
-    repo = UserRepository(current_app.config['USERS_DB_PATH'])
+    repo = UserRepository()
     user = repo.find_by_username(username)
     
     if not user or not repo.verify_password(user, password):
@@ -190,7 +190,7 @@ def refresh_token():
         }), 401
     
     # Get user and generate new access token
-    repo = UserRepository(current_app.config['USERS_DB_PATH'])
+    repo = UserRepository()
     user = repo.find_by_id(payload['user_id'])
     
     if not user:
@@ -234,7 +234,7 @@ def change_password(**kwargs):
             'message': 'New password must be at least 6 characters'
         }), 400
     
-    repo = UserRepository(current_app.config['USERS_DB_PATH'])
+    repo = UserRepository()
     
     # Verify old password
     if not repo.verify_password(current_user, data['old_password']):
