@@ -6,7 +6,7 @@ class UserService:
     """User service handling user business logic"""
     
     def __init__(self):
-        self.repo = UserRepository(current_app.config['USERS_DB_PATH'])
+        self.repo = UserRepository()
     
     def create_employee(self, username, email, password, created_by):
         """
