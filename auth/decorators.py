@@ -279,7 +279,7 @@ def validate_target_user_access(f):
             }), 400
         
         # Get target user
-        repo = UserRepository(current_app.config['USERS_DB_PATH'])
+        repo = UserRepository()
         target_user = repo.find_by_id(user_id)
         
         if not target_user:
