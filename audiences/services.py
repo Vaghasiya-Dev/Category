@@ -6,7 +6,7 @@ class AudienceService:
     """Audience service handling audience business logic"""
     
     def __init__(self):
-        self.repo = AudienceRepository(current_app.config['AUDIENCES_DB_PATH'])
+        self.repo = AudienceRepository()
     
     def add_audience_to_leaf_node(self, audience_id, category_path, audience_info=None, created_by=None):
         """
