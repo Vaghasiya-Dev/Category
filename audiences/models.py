@@ -194,11 +194,27 @@ class AudienceRepository:
     
     def get_all_audiences(self):
         """Get all audiences"""
-        return list(self.data.values())
+        try:
+            self._load_data()
+            if not self.data or not isinstance(self.data, dict):
+                return []
+            return list(self.data.values())
+        except Exception as e:
+            print(f"Error in get_all_audiences: {e}")
+            import traceback
+            traceback.print_exc()
+            return []
     
     def get_audience_by_id(self, audience_id):
         """Get audience by ID"""
-        return self.data.get(audience_id)
+        try:
+            self._load_data()
+            if not self.data or not isinstance(self.data, dict):
+                return None
+            return self.data.get(audience_id)
+        except Exception as e:
+            print(f"Error in get_audience_by_id: {e}")
+            return None
     
     def update_audience_info(self, audience_id, audience_info):
         """
@@ -212,33 +228,50 @@ class AudienceRepository:
         Returns:
             tuple: (success, message)
         """
-        if audience_id not in self.data:
-            return False, "Audience not found"
+        try:
+            # Fresh load for serverless
+            self._load_data()
+            
+            if not self.data or audience_id not in self.data:
+                return False, "Audience not found"
         
-        # Get existing audience_info
-        existing_info = self.data[audience_id].get('audience_info', {})
-        
-        # Only update fields that already exist in the structure
-        # This prevents creating new nested objects
-        allowed_fields = ['names', 'min_age', 'max_age', 'description', 'target_criteria']
-        
-        for field in allowed_fields:
-            if field in audience_info:
-                existing_info[field] = audience_info[field]
-        
-        # Update the audience_info with modified fields only
-        self.data[audience_id]['audience_info'] = existing_info
-        self.data[audience_id]['updated_at'] = datetime.now().isoformat()
-        
-        self._save_data()
-        return True, "Audience information updated successfully"
+            # Get existing audience_info
+            existing_info = self.data[audience_id].get('audience_info', {})
+            
+            # Only update fields that already exist in the structure
+            # This prevents creating new nested objects
+            allowed_fields = ['names', 'min_age', 'max_age', 'description', 'target_criteria']
+            
+            for field in allowed_fields:
+                if field in audience_info:
+                    existing_info[field] = audience_info[field]
+            
+            # Update the audience_info with modified fields only
+            self.data[audience_id]['audience_info'] = existing_info
+            self.data[audience_id]['updated_at'] = datetime.now().isoformat()
+            
+            self._save_data()
+            return True, "Audience information updated successfully"
+        except Exception as e:
+            print(f"Error in update_audience_info: {e}")
+            import traceback
+            traceback.print_exc()
+            return False, f"Error updating audience: {str(e)}"
     
     def get_statistics(self):
         """Get audience statistics"""
-        total_audiences = len(self.data)
-        total_assignments = sum(len(a.get('categories', [])) for a in self.data.values())
-        
-        return {
-            'total_audiences': total_audiences,
-            'total_assignments': total_assignments
-        }
+        try:
+            self._load_data()
+            if not self.data or not isinstance(self.data, dict):
+                return {'total_audiences': 0, 'total_assignments': 0}
+            
+            total_audiences = len(self.data)
+            total_assignments = sum(len(a.get('categories', [])) for a in self.data.values())
+            
+            return {
+                'total_audiences': total_audiences,
+                'total_assignments': total_assignments
+            }
+        except Exception as e:
+            print(f"Error in get_statistics: {e}")
+            return {'total_audiences': 0, 'total_assignments': 0}

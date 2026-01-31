@@ -257,31 +257,43 @@ def get_all_audiences(**kwargs):
         offset: Pagination offset (optional, default: 0)
     """
     current_user = kwargs.get('current_user')
-    service = get_service()
-    audiences = service.get_all_audiences()
-    
-    # Apply search filter
-    search = request.args.get('search', '').lower()
-    if search:
-        audiences = [
-            a for a in audiences 
-            if search in a.get('audience_id', '').lower() or 
-               any(search in cat['category_path_str'].lower() for cat in a.get('categories', []))
-        ]
-    
-    # Apply pagination
-    limit = int(request.args.get('limit', 50))
-    offset = int(request.args.get('offset', 0))
-    
-    paginated_audiences = audiences[offset:offset + limit]
-    
-    return jsonify({
-        'success': True,
-        'audiences': paginated_audiences,
-        'total': len(audiences),
-        'limit': limit,
-        'offset': offset
-    })
+    try:
+        service = get_service()
+        logger.info("Fetching all audiences")
+        audiences = service.get_all_audiences()
+        logger.info(f"Found {len(audiences)} total audiences")
+        
+        # Apply search filter
+        search = request.args.get('search', '').lower()
+        if search:
+            audiences = [
+                a for a in audiences 
+                if search in a.get('audience_id', '').lower() or 
+                   any(search in cat.get('category_path_str', '').lower() for cat in a.get('categories', []))
+            ]
+        
+        # Apply pagination
+        limit = int(request.args.get('limit', 50))
+        offset = int(request.args.get('offset', 0))
+        
+        paginated_audiences = audiences[offset:offset + limit]
+        
+        return jsonify({
+            'success': True,
+            'audiences': paginated_audiences,
+            'total': len(audiences),
+            'limit': limit,
+            'offset': offset
+        })
+    except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        logger.error(f"Exception in get_all_audiences: {error_trace}")
+        return jsonify({
+            'success': False,
+            'message': 'Internal server error',
+            'error': str(e)
+        }), 500
  
  
 @audiences_bp.route('/<audience_id>/category/<path:category_path>', methods=['DELETE'])
