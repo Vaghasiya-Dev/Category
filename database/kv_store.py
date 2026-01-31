@@ -6,12 +6,12 @@ from pathlib import Path
 # Initialize Redis KV connection with fallback for local development
 def get_kv_connection():
     """Get KV connection, with fallback for local development"""
-    kv_url = os.environ.get('KV_URL')
+    kv_url = os.environ.get('KV_URL') or os.environ.get('REDIS_URL')
     if kv_url:
         try:
             return redis.from_url(kv_url)
         except Exception as e:
-            print(f"Warning: Could not connect to Vercel KV: {e}. Using local fallback.")
+            print(f"Warning: Could not connect to Redis: {e}. Using local fallback.")
             return None
     return None
 
