@@ -34,11 +34,14 @@ class AudienceRepository:
     def __init__(self, db_path=None):
         # db_path kept for backward compatibility but not used with KV
         self.kv_key = 'audiences'
-        self._load_data()
+        self.data = None
     
     def _load_data(self):
-        """Load audiences from Vercel KV storage"""
+        """Load audiences from Vercel KV storage (always fresh read for serverless)"""
         self.data = JSONStore.read(self.kv_key)
+        # Ensure data is a dict, not None
+        if self.data is None:
+            self.data = {}
     
     def _save_data(self):
         """Save audiences to Vercel KV storage"""
@@ -57,6 +60,9 @@ class AudienceRepository:
         Returns:
             tuple: (audience_dict, message)
         """
+        # Fresh load for serverless
+        self._load_data()
+        
         # Create audience record if not exists
         if audience_id not in self.data:
             self.data[audience_id] = {
@@ -95,6 +101,9 @@ class AudienceRepository:
         Returns:
             list: List of category paths
         """
+        # Fresh load for serverless
+        self._load_data()
+        
         if audience_id not in self.data:
             return []
         
@@ -110,6 +119,9 @@ class AudienceRepository:
         Returns:
             list: List of audiences
         """
+        # Fresh load for serverless
+        self._load_data()
+        
         category_str = ' -> '.join(category_path)
         audiences = []
         
@@ -136,6 +148,9 @@ class AudienceRepository:
         Returns:
             tuple: (success, message)
         """
+        # Fresh load for serverless
+        self._load_data()
+        
         if audience_id not in self.data:
             return False, "Audience not found"
         

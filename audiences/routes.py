@@ -142,16 +142,28 @@ def get_category_audiences(category_path, **kwargs):
     Path: /api/audiences/categories/Electronics/Audio%20Device/Headphones/audiences
     """
     current_user = kwargs.get('current_user')
-    service = get_service()
-    path_list = category_path.split('/')
-    audiences = service.get_category_audiences(path_list)
-    
-    return jsonify({
-        'success': True,
-        'category_path': path_list,
-        'audiences': audiences,
-        'count': len(audiences)
-    })
+    try:
+        service = get_service()
+        path_list = category_path.split('/')
+        logger.info(f"Fetching audiences for category path: {path_list}")
+        audiences = service.get_category_audiences(path_list)
+        logger.info(f"Found {len(audiences)} audiences for category: {path_list}")
+        
+        return jsonify({
+            'success': True,
+            'category_path': path_list,
+            'audiences': audiences,
+            'count': len(audiences)
+        })
+    except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        logger.error(f"Exception in get_category_audiences: {error_trace}")
+        return jsonify({
+            'success': False,
+            'message': 'Internal server error',
+            'error': str(e)
+        }), 500
 
 
 @audiences_bp.route('/categories/<path:category_path>/has-audience', methods=['GET'])

@@ -111,18 +111,34 @@ class JSONStore:
             redis_conn = get_kv_connection()
             if redis_conn:
                 # Using Redis KV
-                data = redis_conn.get(key)
-                if data:
-                    # decode_responses=True means data is already a string
-                    if isinstance(data, str):
-                        return json.loads(data)
-                    return data
-                return {}
+                try:
+                    data = redis_conn.get(key)
+                    if data:
+                        # decode_responses=True means data is already a string
+                        if isinstance(data, str):
+                            parsed_data = json.loads(data)
+                            print(f"✓ Successfully read '{key}' from Redis: {len(parsed_data)} records")
+                            return parsed_data
+                        return data
+                    # Key doesn't exist in Redis, try loading from file
+                    print(f"Warning: Key '{key}' not found in Redis, trying local file")
+                    file_data = JSONStore._load_from_file(key)
+                    # If local file has data, sync it to Redis
+                    if file_data:
+                        print(f"Syncing {len(file_data)} records from file to Redis for key '{key}'")
+                        redis_conn.set(key, json.dumps(file_data, ensure_ascii=False))
+                    return file_data
+                except Exception as redis_error:
+                    print(f"Redis error for key '{key}': {redis_error}")
+                    print(f"Falling back to local file for key '{key}'")
+                    return JSONStore._load_from_file(key)
             else:
                 # Using local JSON files
                 return JSONStore._load_from_file(key)
         except Exception as e:
             print(f"Error reading {key}: {e}")
+            import traceback
+            traceback.print_exc()
             return {}
     
     @staticmethod
