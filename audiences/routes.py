@@ -1,6 +1,11 @@
 from flask import Blueprint, request, jsonify
 from audiences.services import AudienceService
 from auth.decorators import require_auth, check_permission, require_role
+import logging
+
+# Configure logging for Vercel
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
  
 audiences_bp = Blueprint('audiences', __name__, url_prefix='/api/audiences')
 
@@ -9,7 +14,11 @@ audiences_bp = Blueprint('audiences', __name__, url_prefix='/api/audiences')
 
 def get_service():
     """Helper function to get AudienceService instance"""
-    return AudienceService()
+    try:
+        return AudienceService()
+    except Exception as e:
+        logger.error(f"Error creating AudienceService: {e}")
+        raise
  
  
 @audiences_bp.route('/', methods=['POST'])
@@ -35,7 +44,11 @@ def add_audience(**kwargs):
         service = get_service()
         data = request.get_json()
         
+        # Log request for debugging on Vercel
+        logger.info(f"Add audience request: {data}")
+        
         if not data or 'audience_id' not in data or 'category_path' not in data:
+            logger.warning("Missing required fields in request")
             return jsonify({
                 'success': False,
                 'message': 'Missing required fields: audience_id, category_path'
@@ -61,11 +74,14 @@ def add_audience(**kwargs):
         )
         
         if result['success']:
+            logger.info(f"Successfully added audience: {data['audience_id']}")
             return jsonify(result), 201
+        logger.error(f"Failed to add audience: {result.get('message')}")
         return jsonify(result), 500
     except Exception as e:
         import traceback
-        traceback.print_exc()
+        error_trace = traceback.format_exc()
+        logger.error(f"Exception in add_audience: {error_trace}")
         return jsonify({
             'success': False,
             'message': 'Internal server error',

@@ -15,11 +15,23 @@ from pages.settings_page import settings_page_bp
 from pages.categories_page import categories_page_bp
 from pages.admin_page import admin_page_bp
 from pages.home_page import home_page_bp
+import os
 
 # ...existing code...
 app = Flask(__name__)
 app.config.from_object(Config)
-CORS(app)
+
+# Optimized CORS for Vercel deployment
+CORS(app, resources={
+    r"/api/*": {
+        "origins": "*",
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "expose_headers": ["Content-Type"],
+        "supports_credentials": True,
+        "max_age": 3600
+    }
+})
 
 # Initialize default data in KV if empty
 def initialize_kv_data():
@@ -199,6 +211,15 @@ def not_found(error):
 def internal_error(error):
     """500 error handler"""
     return jsonify({'success': False, 'message': 'Internal server error'}), 500
+
+# Initialize data when starting the app (only in non-serverless environments)
+if os.environ.get('VERCEL') != '1' and __name__ != '__main__':
+    initialize_kv_data()
+
+# Vercel serverless handler
+app_handler = app
  
 if __name__ == '__main__':
+    # Initialize data for local development
+    initialize_kv_data()
     app.run(debug=True, host='0.0.0.0', port=5000)

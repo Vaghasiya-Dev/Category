@@ -9,12 +9,14 @@ load_dotenv()
 
 # Initialize Redis KV connection with fallback for local development
 _kv_instance = None
+_connection_checked = False
 
 def get_kv_connection():
-    """Get KV connection, with fallback for local development"""
-    global _kv_instance
+    """Get KV connection, with fallback for local development (optimized for serverless)"""
+    global _kv_instance, _connection_checked
     
-    if _kv_instance is not None:
+    # Return cached instance if already checked
+    if _connection_checked:
         return _kv_instance
     
     # Try both REDIS_URL and KV_URL for compatibility
@@ -23,19 +25,32 @@ def get_kv_connection():
         # Remove quotes if present
         kv_url = kv_url.strip('"').strip("'")
         try:
-            _kv_instance = redis.from_url(kv_url, decode_responses=True, socket_connect_timeout=5)
-            # Test connection
+            # Optimized for serverless: shorter timeouts, connection pooling
+            _kv_instance = redis.from_url(
+                kv_url, 
+                decode_responses=True, 
+                socket_connect_timeout=3,
+                socket_timeout=3,
+                socket_keepalive=True,
+                health_check_interval=30,
+                max_connections=10
+            )
+            # Test connection with timeout
             _kv_instance.ping()
+            _connection_checked = True
+            print("✓ Redis connected successfully")
             return _kv_instance
         except Exception as e:
             print(f"Warning: Could not connect to Redis: {e}. Using local fallback.")
-            _kv_instance = False  # Mark as failed
+            _kv_instance = None
+            _connection_checked = True
             return None
-    _kv_instance = False  # Mark as not configured
+    
+    _connection_checked = True
     return None
 
-# Get the connection
-kv = get_kv_connection()
+# Get the connection (lazy initialization for serverless)
+kv = None
 
 # Map of KV keys to local JSON file paths
 JSON_FILE_MAP = {
@@ -92,9 +107,11 @@ class JSONStore:
     def read(key):
         """Read JSON from KV or local file"""
         try:
-            if kv:
+            # Get fresh connection for serverless
+            redis_conn = get_kv_connection()
+            if redis_conn:
                 # Using Redis KV
-                data = kv.get(key)
+                data = redis_conn.get(key)
                 if data:
                     # decode_responses=True means data is already a string
                     if isinstance(data, str):
@@ -112,9 +129,11 @@ class JSONStore:
     def write(key, data):
         """Write JSON to KV or local file"""
         try:
-            if kv:
+            # Get fresh connection for serverless
+            redis_conn = get_kv_connection()
+            if redis_conn:
                 # Using Redis KV
-                kv.set(key, json.dumps(data, ensure_ascii=False))
+                redis_conn.set(key, json.dumps(data, ensure_ascii=False))
                 return True
             else:
                 # Using local JSON files

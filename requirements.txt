@@ -3,4 +3,4 @@ flask-cors==6.0.2
 PyJWT==2.9.0
 python-dotenv==1.0.0
 redis==5.0.1
-
+gunicorn==21.2.0
