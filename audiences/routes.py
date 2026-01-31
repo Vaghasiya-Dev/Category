@@ -119,14 +119,13 @@ def batch_add_audiences(**kwargs):
  
 @audiences_bp.route('/categories/<path:category_path>/audiences', methods=['GET'])
 @require_auth
-def get_category_audiences(**kwargs):
+def get_category_audiences(category_path, **kwargs):
     """
     Get all audiences assigned to a specific category
     
     Path: /api/audiences/categories/Electronics/Audio%20Device/Headphones/audiences
     """
     current_user = kwargs.get('current_user')
-    category_path = kwargs.get('category_path')
     service = get_service()
     path_list = category_path.split('/')
     audiences = service.get_category_audiences(path_list)
@@ -141,7 +140,7 @@ def get_category_audiences(**kwargs):
 
 @audiences_bp.route('/categories/<path:category_path>/has-audience', methods=['GET'])
 @require_auth
-def check_category_has_audience(**kwargs):
+def check_category_has_audience(category_path, **kwargs):
     """
     Check if a category already has an audience assigned
     
@@ -156,7 +155,6 @@ def check_category_has_audience(**kwargs):
     Path: /api/audiences/categories/Electronics/Audio%20Device/Headphones/has-audience
     """
     current_user = kwargs.get('current_user')
-    category_path = kwargs.get('category_path')
     service = get_service()
     path_list = category_path.split('/')
     audiences = service.get_category_audiences(path_list)
@@ -176,14 +174,13 @@ def check_category_has_audience(**kwargs):
  
 @audiences_bp.route('/<audience_id>/categories', methods=['GET'])
 @require_auth
-def get_audience_categories(**kwargs):
+def get_audience_categories(audience_id, **kwargs):
     """
     Get all categories assigned to an audience
     
     Path: /api/audiences/aud001/categories
     """
     current_user = kwargs.get('current_user')
-    audience_id = kwargs.get('audience_id')
     service = get_service()
     categories = service.get_audience_categories(audience_id)
     
@@ -197,14 +194,13 @@ def get_audience_categories(**kwargs):
  
 @audiences_bp.route('/<audience_id>', methods=['GET'])
 @require_auth
-def get_audience(**kwargs):
+def get_audience(audience_id, **kwargs):
     """
     Get audience by ID
     
     Path: /api/audiences/aud001
     """
     current_user = kwargs.get('current_user')
-    audience_id = kwargs.get('audience_id')
     service = get_service()
     audience = service.get_audience_by_id(audience_id)
     
@@ -263,15 +259,13 @@ def get_all_audiences(**kwargs):
 @audiences_bp.route('/<audience_id>/category/<path:category_path>', methods=['DELETE'])
 @require_auth
 @check_permission('can_manage_audiences')
-def remove_audience_from_category(**kwargs):
+def remove_audience_from_category(audience_id, category_path, **kwargs):
     """
     Remove audience from specific category
     
     Path: /api/audiences/aud001/category/Electronics/Audio%20Device/Headphones
     """
     current_user = kwargs.get('current_user')
-    audience_id = kwargs.get('audience_id')
-    category_path = kwargs.get('category_path')
     service = get_service()
     path_list = category_path.split('/')
     
@@ -289,7 +283,7 @@ def remove_audience_from_category(**kwargs):
 @audiences_bp.route('/<audience_id>', methods=['PUT'])
 @require_auth
 @check_permission('can_manage_audiences')
-def update_audience(**kwargs):
+def update_audience(audience_id, **kwargs):
     """
     Update audience information (Admin and Super Admin)
     Only updates existing fields in audience_info, does not create new nested objects
@@ -306,7 +300,6 @@ def update_audience(**kwargs):
         }
     """
     current_user = kwargs.get('current_user')
-    audience_id = kwargs.get('audience_id')
     service = get_service()
     data = request.get_json()
     

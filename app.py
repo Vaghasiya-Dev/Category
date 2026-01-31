@@ -23,17 +23,18 @@ CORS(app)
 
 # Initialize default data in KV if empty
 def initialize_kv_data():
-    """Initialize default data in KV storage (only for Vercel KV, not local files)"""
+    """Initialize default data in KV storage (only for Redis/KV, not local files)"""
     import os
     import json
     from pathlib import Path
     
-    # Only initialize if using Vercel KV (not local files)
-    if not os.environ.get('KV_URL'):
+    # Check if using Redis/KV (not local files)
+    redis_url = os.environ.get('REDIS_URL') or os.environ.get('KV_URL')
+    if not redis_url:
         print("Using local JSON files for storage")
         return
     
-    print("Initializing Vercel KV storage...")
+    print("Initializing Redis/KV storage...")
     
     # Load categories from local file if KV is empty
     if not JSONStore.read('categories'):

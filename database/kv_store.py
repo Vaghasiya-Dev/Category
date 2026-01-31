@@ -2,19 +2,39 @@ import os
 import json
 import redis
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Initialize Redis KV connection with fallback for local development
+_kv_instance = None
+
 def get_kv_connection():
     """Get KV connection, with fallback for local development"""
-    kv_url = os.environ.get('KV_URL')
+    global _kv_instance
+    
+    if _kv_instance is not None:
+        return _kv_instance
+    
+    # Try both REDIS_URL and KV_URL for compatibility
+    kv_url = os.environ.get('REDIS_URL') or os.environ.get('KV_URL')
     if kv_url:
+        # Remove quotes if present
+        kv_url = kv_url.strip('"').strip("'")
         try:
-            return redis.from_url(kv_url)
+            _kv_instance = redis.from_url(kv_url, decode_responses=True, socket_connect_timeout=5)
+            # Test connection
+            _kv_instance.ping()
+            return _kv_instance
         except Exception as e:
-            print(f"Warning: Could not connect to Vercel KV: {e}. Using local fallback.")
+            print(f"Warning: Could not connect to Redis: {e}. Using local fallback.")
+            _kv_instance = False  # Mark as failed
             return None
+    _kv_instance = False  # Mark as not configured
     return None
 
+# Get the connection
 kv = get_kv_connection()
 
 # Map of KV keys to local JSON file paths
@@ -73,10 +93,13 @@ class JSONStore:
         """Read JSON from KV or local file"""
         try:
             if kv:
-                # Using Vercel KV
+                # Using Redis KV
                 data = kv.get(key)
                 if data:
-                    return json.loads(data)
+                    # decode_responses=True means data is already a string
+                    if isinstance(data, str):
+                        return json.loads(data)
+                    return data
                 return {}
             else:
                 # Using local JSON files
@@ -90,12 +113,13 @@ class JSONStore:
         """Write JSON to KV or local file"""
         try:
             if kv:
-                # Using Vercel KV
-                kv.set(key, json.dumps(data))
+                # Using Redis KV
+                kv.set(key, json.dumps(data, ensure_ascii=False))
+                return True
             else:
                 # Using local JSON files
                 JSONStore._save_to_file(key, data)
-            return True
+                return True
         except Exception as e:
             print(f"Error writing {key}: {e}")
             return False

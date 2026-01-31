@@ -361,7 +361,7 @@
             <form id="audienceForm">
                 <div class="form-group">
                     <label for="categoryPath">Category Path *</label>
-                    <input type="text" id="categoryPath" placeholder="e.g., Electronics > Audio Device > Headphones" readonly>
+                    <input type="text" id="categoryPath" placeholder="e.g., Electronics -> Audio Device -> Headphones" readonly>
                     <input type="hidden" id="categoryPathArray">
                 </div>
                 <div class="form-group">
@@ -412,7 +412,7 @@
             <form id="editAudienceForm">
                 <div class="form-group">
                     <label for="editCategoryPath">Category Path *</label>
-                    <input type="text" id="editCategoryPath" placeholder="e.g., Electronics > Audio Device > Headphones" readonly>
+                    <input type="text" id="editCategoryPath" placeholder="e.g., Electronics -> Audio Device -> Headphones" readonly>
                     <input type="hidden" id="editCategoryPathArray">
                     <input type="hidden" id="editAudienceId">
                 </div>
@@ -934,7 +934,7 @@
 
         function openAudienceModal(node) {
             const path = getCategoryPath(node);
-            document.getElementById('categoryPath').value = path.join(' > ');
+            document.getElementById('categoryPath').value = path.join(' -> ');
             document.getElementById('categoryPathArray').value = JSON.stringify(path);
             document.getElementById('audienceModal').style.display = 'block';
         }
@@ -958,7 +958,7 @@
             const audienceInfo = JSON.parse(audienceInfoStr);
             
             // Populate form with existing data
-            document.getElementById('editCategoryPath').value = path.join(' > ');
+            document.getElementById('editCategoryPath').value = path.join(' -> ');
             document.getElementById('editCategoryPathArray').value = JSON.stringify(path);
             document.getElementById('editAudienceId').value = audienceId;
             
@@ -1006,7 +1006,7 @@
                 console.log('Audiences data:', data);
                 
                 if (data.success && data.audiences.length > 0) {
-                    let html = `<h4 class="audience-header">Category: ${path.join(' > ')}</h4>`;
+                    let html = `<h4 class="audience-header">Category: ${path.join(' -> ')}</h4>`;
                     html += `<div class="audience-container">`;
                     
                     data.audiences.forEach(aud => {

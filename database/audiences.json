@@ -1,18 +1,15 @@
 {
-  "aud_1769169649129_fdns8b": {
-    "audience_id": "aud_1769169649129_fdns8b",
+  "aud_1769853904304_7uf41f": {
+    "audience_id": "aud_1769853904304_7uf41f",
     "audience_info": {
       "names": [
-        "cycling",
-        "trekking",
-        "running",
-        "camping",
-        "basket",
-        "volleyball"
+        "cardio",
+        "badmintons",
+        "cricket"
       ],
-      "min_age": 6,
-      "max_age": 18,
-      "description": "A highly active audience interested in sports, fitness activities, outdoor games, adventure sports, and a healthy lifestyle.",
+      "min_age": 12,
+      "max_age": 35,
+      "description": "",
       "target_criteria": ""
     },
     "categories": [
@@ -21,137 +18,11 @@
           "6. Sports, Fitness & Outdoor"
         ],
         "category_path_str": "6. Sports, Fitness & Outdoor",
-        "assigned_at": "2026-01-23T17:30:49.142927"
+        "assigned_at": "2026-01-31T10:05:07.030299"
       }
     ],
     "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-23T17:30:49.142927",
-    "updated_at": "2026-01-29T16:36:34.492078"
-  },
-  "aud_1769685478621_k4c7au": {
-    "audience_id": "aud_1769685478621_k4c7au",
-    "audience_info": {
-      "names": [
-        "abc"
-      ],
-      "min_age": 9,
-      "max_age": 18,
-      "description": "",
-      "target_criteria": ""
-    },
-    "categories": [
-      {
-        "category_path": [
-          "6. Sports, Fitness & Outdoor",
-          "6.1 Fitness Equipment"
-        ],
-        "category_path_str": "6. Sports, Fitness & Outdoor -> 6.1 Fitness Equipment",
-        "assigned_at": "2026-01-29T16:47:58.625901"
-      }
-    ],
-    "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-29T16:47:58.625901",
-    "updated_at": "2026-01-29T16:47:58.625901"
-  },
-  "aud_1769688178877_01w8b5": {
-    "audience_id": "aud_1769688178877_01w8b5",
-    "audience_info": {
-      "names": [
-        "cricket"
-      ],
-      "min_age": 6,
-      "max_age": 46,
-      "description": "",
-      "target_criteria": ""
-    },
-    "categories": [
-      {
-        "category_path": [
-          "6. Sports, Fitness & Outdoor",
-          "6.2 Sports Gear"
-        ],
-        "category_path_str": "6. Sports, Fitness & Outdoor -> 6.2 Sports Gear",
-        "assigned_at": "2026-01-29T17:32:58.883558"
-      }
-    ],
-    "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-29T17:32:58.883558",
-    "updated_at": "2026-01-29T17:32:58.883558"
-  },
-  "aud_1769688413878_aflcoe": {
-    "audience_id": "aud_1769688413878_aflcoe",
-    "audience_info": {
-      "names": [
-        "gym"
-      ],
-      "min_age": 11,
-      "max_age": 17,
-      "description": "",
-      "target_criteria": ""
-    },
-    "categories": [
-      {
-        "category_path": [
-          "6. Sports, Fitness & Outdoor",
-          "6.1 Fitness Equipment",
-          "Bodyweight & Functional Training",
-          "Battle Ropes"
-        ],
-        "category_path_str": "6. Sports, Fitness & Outdoor -> 6.1 Fitness Equipment -> Bodyweight & Functional Training -> Battle Ropes",
-        "assigned_at": "2026-01-29T17:36:53.885927"
-      }
-    ],
-    "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-29T17:36:53.885927",
-    "updated_at": "2026-01-29T17:36:53.885927"
-  },
-  "aud_1769690833241_658mmz": {
-    "audience_id": "aud_1769690833241_658mmz",
-    "audience_info": {
-      "names": [
-        "jee book"
-      ],
-      "min_age": 14,
-      "max_age": 18,
-      "description": "",
-      "target_criteria": ""
-    },
-    "categories": [
-      {
-        "category_path": [
-          "7. Books, Stationery & Education"
-        ],
-        "category_path_str": "7. Books, Stationery & Education",
-        "assigned_at": "2026-01-29T18:17:13.249414"
-      }
-    ],
-    "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-29T18:17:13.249414",
-    "updated_at": "2026-01-29T18:17:13.249414"
-  },
-  "aud_1769748016443_cekfb9": {
-    "audience_id": "aud_1769748016443_cekfb9",
-    "audience_info": {
-      "names": [
-        "birthday",
-        "car seller"
-      ],
-      "min_age": 20,
-      "max_age": 50,
-      "description": "",
-      "target_criteria": ""
-    },
-    "categories": [
-      {
-        "category_path": [
-          "Backery, Cakes & Dairy"
-        ],
-        "category_path_str": "Backery, Cakes & Dairy",
-        "assigned_at": "2026-01-30T10:10:15.590859"
-      }
-    ],
-    "created_by": "user_5cf6a33d",
-    "created_at": "2026-01-30T10:10:15.589864",
-    "updated_at": "2026-01-30T10:11:38.208303"
+    "created_at": "2026-01-31T10:05:07.030288",
+    "updated_at": "2026-01-31T10:05:58.205274"
   }
 }
