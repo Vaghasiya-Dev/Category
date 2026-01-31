@@ -28,12 +28,12 @@ def initialize_kv_data():
     import json
     from pathlib import Path
     
-    # Only initialize if using Vercel KV (not local files)
-    if not os.environ.get('KV_URL'):
+    # Only initialize if using Redis KV (not local files)
+    if not (os.environ.get('KV_URL') or os.environ.get('REDIS_URL')):
         print("Using local JSON files for storage")
         return
     
-    print("Initializing Vercel KV storage...")
+    print("Initializing Redis KV storage...")
     
     # Load categories from local file if KV is empty
     if not JSONStore.read('categories'):
