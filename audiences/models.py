@@ -38,9 +38,19 @@ class AudienceRepository:
     
     def _load_data(self):
         """Load audiences from Vercel KV storage (always fresh read for serverless)"""
-        self.data = JSONStore.read(self.kv_key)
-        # Ensure data is a dict, not None
-        if self.data is None:
+        try:
+            self.data = JSONStore.read(self.kv_key)
+            # Ensure data is a dict, not None
+            if self.data is None:
+                self.data = {}
+            # Ensure it's actually a dict
+            if not isinstance(self.data, dict):
+                print(f"Warning: audiences data is not a dict: {type(self.data)}")
+                self.data = {}
+        except Exception as e:
+            print(f"Error loading audiences data: {e}")
+            import traceback
+            traceback.print_exc()
             self.data = {}
     
     def _save_data(self):
@@ -119,23 +129,39 @@ class AudienceRepository:
         Returns:
             list: List of audiences
         """
-        # Fresh load for serverless
-        self._load_data()
-        
-        category_str = ' -> '.join(category_path)
-        audiences = []
-        
-        for audience_id, data in self.data.items():
-            for cat in data.get('categories', []):
-                if cat['category_path_str'] == category_str:
-                    audiences.append({
-                        'audience_id': audience_id,
-                        'audience_info': data.get('audience_info', {}),
-                        'assigned_at': cat['assigned_at']
-                    })
-                    break
-        
-        return audiences
+        try:
+            # Fresh load for serverless
+            self._load_data()
+            
+            # Defensive check
+            if not self.data or not isinstance(self.data, dict):
+                return []
+            
+            category_str = ' -> '.join(category_path)
+            audiences = []
+            
+            for audience_id, data in self.data.items():
+                try:
+                    if not isinstance(data, dict):
+                        continue
+                    for cat in data.get('categories', []):
+                        if cat.get('category_path_str') == category_str:
+                            audiences.append({
+                                'audience_id': audience_id,
+                                'audience_info': data.get('audience_info', {}),
+                                'assigned_at': cat.get('assigned_at', '')
+                            })
+                            break
+                except Exception as item_error:
+                    print(f"Error processing audience {audience_id}: {item_error}")
+                    continue
+            
+            return audiences
+        except Exception as e:
+            print(f"Error in get_audiences_by_category: {e}")
+            import traceback
+            traceback.print_exc()
+            return []
     
     def remove_audience_from_category(self, audience_id, category_path):
         """
